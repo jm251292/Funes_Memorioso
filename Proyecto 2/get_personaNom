@@ -1,0 +1,10 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `get_personaNom` (IN nom VARCHAR(45))
+BEGIN
+select nombre, apellido1, apellido2 from persona 
+	WHERE nombre = nom order by Nombre; END;

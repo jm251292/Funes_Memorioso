@@ -1,0 +1,11 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `ins_persona` (IN nom VARCHAR(45), IN ape1 VARCHAR(45), IN ape2 VARCHAR(45), 
+IN Ced VARCHAR(45), IN Gen VARCHAR(45), IN fecha DATE)
+BEGIN
+insert into persona(idpersona, nombre, apellido1, apellido2, Cedula, genero, FechaNacimiento) 
+	values (NULL,nom, ape1, ape2, ced, gen, fecha); END;

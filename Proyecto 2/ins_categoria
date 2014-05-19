@@ -1,0 +1,9 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `ins_categoria` (in nom varchar(45))
+BEGIN
+insert into categoria(idCategoria, Nombre) values (NULL, nom); END;
