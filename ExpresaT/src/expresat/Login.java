@@ -52,8 +52,13 @@ public class Login extends javax.swing.JFrame
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Usuario");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(340, 170, 61, 23);
+        jRadioButton1.setBounds(340, 170, 130, 23);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +71,7 @@ public class Login extends javax.swing.JFrame
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Administrador");
         getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(340, 190, 91, 23);
+        jRadioButton2.setBounds(340, 190, 140, 23);
 
         jLabel1.setText("Usuario:");
         getContentPane().add(jLabel1);
@@ -115,6 +120,10 @@ public class Login extends javax.swing.JFrame
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     public static void main(String args[]) 
     {
