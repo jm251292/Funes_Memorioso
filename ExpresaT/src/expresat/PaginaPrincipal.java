@@ -43,6 +43,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Acciones"));
@@ -67,6 +68,11 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jButton2.setBounds(10, 60, 160, 23);
 
         jButton7.setText("Calificar persona");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton7);
         jButton7.setBounds(10, 90, 160, 23);
 
@@ -113,7 +119,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jButton6.setBounds(10, 90, 170, 23);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(310, 20, 240, 420);
+        jPanel2.setBounds(320, 20, 280, 420);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,6 +171,14 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Calificar_Persona().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

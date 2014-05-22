@@ -48,17 +48,18 @@ public class Registrar_Entidad extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         jButton1.setText("Registrar");
         getContentPane().add(jButton1);
         jButton1.setBounds(300, 210, 90, 23);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(170, 40, 220, 20);
+        jTextField1.setBounds(180, 40, 220, 20);
 
         jLabel1.setText("Nombre del ente o la institución:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 40, 154, 14);
+        jLabel1.setBounds(10, 40, 170, 14);
 
         jButton2.setText("Atrás");
         getContentPane().add(jButton2);
@@ -68,7 +69,7 @@ public class Registrar_Entidad extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(10, 70, 100, 14);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(170, 70, 220, 20);
+        jTextField2.setBounds(180, 70, 220, 20);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dirección"));
         jPanel1.setLayout(null);
@@ -112,7 +113,7 @@ public class Registrar_Entidad extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(170, 100, 220, 20);
+        jComboBox1.setBounds(180, 100, 220, 20);
 
         jLabel9.setText("Categoría:");
         getContentPane().add(jLabel9);

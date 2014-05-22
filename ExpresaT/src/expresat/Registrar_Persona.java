@@ -26,22 +26,151 @@ public class Registrar_Persona extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(null);
+
+        jLabel1.setText("Nombre:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 20, 156, 14);
+
+        jLabel2.setText("Primer Apellido:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 65, 156, 14);
+
+        jLabel3.setText("Segundo Apellido:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(10, 110, 156, 14);
+
+        jLabel4.setText("Cedula:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 155, 156, 14);
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(369, 20, 220, 30);
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(369, 65, 220, 30);
+        getContentPane().add(jTextField3);
+        jTextField3.setBounds(369, 110, 220, 30);
+        getContentPane().add(jTextField4);
+        jTextField4.setBounds(369, 155, 220, 30);
+
+        jLabel5.setText("Genero:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 200, 156, 14);
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Hombre");
+        getContentPane().add(jRadioButton1);
+        jRadioButton1.setBounds(369, 196, 100, 23);
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Mujer");
+        getContentPane().add(jRadioButton2);
+        jRadioButton2.setBounds(508, 196, 100, 23);
+
+        jLabel6.setText("Fecha de Nacimiento:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(10, 243, 185, 14);
+
+        jLabel7.setText("Edad:");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(10, 280, 185, 14);
+
+        jLabel8.setText("(Aqui va el calculo de edad apartir de fecha de nacimiento)");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(350, 280, 340, 14);
+
+        jLabel9.setText("Institucion Donde Labora:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(10, 367, 185, 14);
+
+        jLabel10.setText("Cargo que Desempeña:");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(10, 420, 185, 14);
+
+        jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(352, 466, 90, 23);
+
+        jButton2.setText("Cancelar");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(536, 466, 90, 23);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(213, 364, 130, 20);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox2);
+        jComboBox2.setBounds(213, 416, 130, 20);
+
+        jLabel11.setText("Categoria:");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(10, 320, 185, 14);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox3);
+        jComboBox3.setBounds(213, 318, 130, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,6 +32,7 @@ public class Registrar_Categoria extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -40,11 +41,11 @@ public class Registrar_Categoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(160, 50, 150, 20);
+        jTextField1.setBounds(190, 50, 200, 20);
 
         jLabel1.setText("Nombre de la nueva categoría:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 50, 150, 14);
+        jLabel1.setBounds(10, 50, 190, 14);
 
         jButton1.setText("Crear");
         getContentPane().add(jButton1);

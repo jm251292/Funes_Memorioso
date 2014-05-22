@@ -45,6 +45,7 @@ public class Registro_Denuncia extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         jButton1.setText("Publicar");
@@ -99,7 +100,7 @@ public class Registro_Denuncia extends javax.swing.JFrame {
 
         jLabel1.setText("Descripcion de la denuncia:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 20, 150, 14);
+        jLabel1.setBounds(20, 20, 180, 14);
 
         jList1.setBackground(new java.awt.Color(204, 204, 204));
         jList1.setEnabled(false);
@@ -118,7 +119,7 @@ public class Registro_Denuncia extends javax.swing.JFrame {
 
         jLabel2.setText("Personas involucradas:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(310, 200, 130, 20);
+        jLabel2.setBounds(310, 200, 170, 20);
 
         jButton3.setText("Añadir");
         getContentPane().add(jButton3);
