@@ -32,30 +32,40 @@ public class Contrato extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(620, 525));
         getContentPane().setLayout(null);
 
         jButton1.setText("Terminar");
         getContentPane().add(jButton1);
-        jButton1.setBounds(467, 461, 87, 23);
+        jButton1.setBounds(360, 460, 87, 23);
 
         jButton2.setText("Cancelar");
         getContentPane().add(jButton2);
-        jButton2.setBounds(586, 461, 86, 23);
+        jButton2.setBounds(510, 460, 86, 23);
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("No, acepto los terminos indicados en el contrato.");
         getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(10, 436, 662, 23);
+        jRadioButton1.setBounds(10, 400, 662, 23);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Acepto los terminos indicados en el contrato.");
         getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(10, 410, 662, 23);
+        jRadioButton2.setBounds(10, 370, 662, 23);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(240, 240, 240));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Mediante el presente contrato el usuario, que esta por crearse, acepta la total y completa\nresponsabilidad del uso que le de al servicio brindado por nuestra empresa y como tal\nnos vemos librados de cualquier implicacion legal de cualquier responsabilidad una vez \naceptado este documento.\n\nEl software desarrollado posee un reglamente de uso que se explicara a continuación:\n\n* No se podra usar el software para fines malignos.\n* No se debe reportar más de una vez seguida a la misma persona inmediatamente.\n* No revelar la identidad propia o de algún conocido que haga uso del software.\n* Abstenerse de usar lenguaje soez a la hora de realizar una denuncia.\n* Las calificaciones son 100% subjetivas, no se deben presentar problemas por el\nresultado que presenten.\n\nAhora una vez aceptado el contrato y habiendo leido las normas de uso la empresa \nse compromete a brindarle al usuario los siguientes servicios:\n\n* Denunciar un ente o persona presentando evidencias.\n* Calificar algún ente o persona basandose en alguna experiencia previa con el mismo.\n* Realizar consultas sobre algún ente o persona existentes en la base de datos.\n* Crear alguna categoría nueva para un ente o una persona.\n* Reportar algún usuario por infringir alguna de las normas explicadas anteriormente.\n");
+        jScrollPane1.setViewportView(jTextArea1);
+
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 11, 662, 392);
+        jScrollPane1.setBounds(10, 11, 580, 330);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -67,5 +77,6 @@ public class Contrato extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
