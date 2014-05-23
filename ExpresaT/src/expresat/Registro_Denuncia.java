@@ -76,7 +76,7 @@ public class Registro_Denuncia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(340, 330, 59, 20);
+        jRadioButton1.setBounds(340, 330, 130, 20);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Privado");
@@ -86,7 +86,7 @@ public class Registro_Denuncia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(340, 350, 70, 20);
+        jRadioButton2.setBounds(340, 350, 130, 20);
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Anónimo");
@@ -96,7 +96,7 @@ public class Registro_Denuncia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jRadioButton3);
-        jRadioButton3.setBounds(340, 310, 67, 20);
+        jRadioButton3.setBounds(340, 310, 130, 20);
 
         jLabel1.setText("Descripcion de la denuncia:");
         getContentPane().add(jLabel1);

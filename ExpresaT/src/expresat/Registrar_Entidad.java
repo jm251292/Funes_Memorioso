@@ -53,17 +53,17 @@ public class Registrar_Entidad extends javax.swing.JFrame {
 
         jButton1.setText("Registrar");
         getContentPane().add(jButton1);
-        jButton1.setBounds(300, 210, 90, 23);
+        jButton1.setBounds(310, 290, 90, 23);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(180, 40, 220, 20);
+        jTextField1.setBounds(200, 40, 200, 20);
 
         jLabel1.setText("Nombre del ente o la institución:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 40, 170, 14);
+        jLabel1.setBounds(10, 40, 190, 14);
 
         jButton2.setText("Atrás");
         getContentPane().add(jButton2);
-        jButton2.setBounds(300, 240, 90, 23);
+        jButton2.setBounds(310, 320, 90, 23);
 
         jLabel2.setText("Cédula jurídica:");
         getContentPane().add(jLabel2);
@@ -76,40 +76,40 @@ public class Registrar_Entidad extends javax.swing.JFrame {
 
         jLabel3.setText("País*:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(10, 30, 40, 14);
+        jLabel3.setBounds(10, 30, 60, 14);
 
         jLabel4.setText("Provincia*:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 50, 70, 14);
+        jLabel4.setBounds(10, 50, 80, 14);
 
         jLabel5.setText("Cantón*:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(10, 70, 60, 14);
+        jLabel5.setBounds(10, 70, 80, 14);
 
         jLabel6.setText("Distrito*:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(10, 90, 60, 14);
+        jLabel6.setBounds(10, 90, 80, 14);
 
         jLabel7.setText("Barrio:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, 110, 32, 14);
+        jLabel7.setBounds(10, 110, 50, 14);
 
         jLabel8.setText("* campos obligados");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(10, 140, 170, 14);
         jPanel1.add(jTextField3);
-        jTextField3.setBounds(80, 30, 170, 20);
+        jTextField3.setBounds(100, 30, 170, 20);
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(80, 50, 170, 20);
+        jTextField4.setBounds(100, 50, 170, 20);
         jPanel1.add(jTextField5);
-        jTextField5.setBounds(80, 70, 170, 20);
+        jTextField5.setBounds(100, 70, 170, 20);
         jPanel1.add(jTextField6);
-        jTextField6.setBounds(80, 90, 170, 20);
+        jTextField6.setBounds(100, 90, 170, 20);
         jPanel1.add(jTextField7);
-        jTextField7.setBounds(80, 110, 170, 20);
+        jTextField7.setBounds(100, 110, 170, 20);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(20, 160, 260, 160);
+        jPanel1.setBounds(20, 160, 280, 160);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1);

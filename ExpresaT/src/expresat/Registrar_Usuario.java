@@ -42,7 +42,8 @@ public class Registrar_Usuario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(320, 290));
+        setMinimumSize(new java.awt.Dimension(400, 350));
+        getContentPane().setLayout(null);
 
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -50,8 +51,12 @@ public class Registrar_Usuario extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(20, 238, 96, 23);
 
         jButton2.setText("Cancelar");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(196, 238, 96, 23);
 
         jPanel1.setInheritsPopupMenu(true);
         jPanel1.setOpaque(false);
@@ -73,21 +78,21 @@ public class Registrar_Usuario extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(10, 162, 65, 14);
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(144, 11, 151, 20);
+        jTextField4.setBounds(144, 11, 151, 30);
         jPanel1.add(jTextField5);
-        jTextField5.setBounds(144, 57, 151, 20);
+        jTextField5.setBounds(144, 57, 151, 30);
         jPanel1.add(jTextField6);
-        jTextField6.setBounds(144, 109, 151, 20);
+        jTextField6.setBounds(144, 109, 151, 30);
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Privado");
         jPanel1.add(jRadioButton1);
-        jRadioButton1.setBounds(144, 158, 61, 23);
+        jRadioButton1.setBounds(120, 160, 80, 23);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Público");
         jPanel1.add(jRadioButton2);
-        jRadioButton2.setBounds(240, 158, 59, 23);
+        jRadioButton2.setBounds(220, 160, 80, 23);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
@@ -95,34 +100,8 @@ public class Registrar_Usuario extends javax.swing.JFrame {
         jPanel1.add(jLabel9);
         jLabel9.setBounds(10, 196, 282, 14);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 23, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(29, 29, 29))
-        );
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(10, 11, 305, 221);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

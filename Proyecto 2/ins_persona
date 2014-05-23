@@ -5,7 +5,24 @@
 DELIMITER $$
 
 CREATE PROCEDURE `ins_persona` (IN nom VARCHAR(45), IN ape1 VARCHAR(45), IN ape2 VARCHAR(45), 
-IN Ced VARCHAR(45), IN Gen VARCHAR(45), IN fecha DATE)
+IN Ced VARCHAR(45), IN Gen VARCHAR(45), IN fecha DATE, in nombretipopersona VARCHAR(50))
+
 BEGIN
-insert into persona(idpersona, nombre, apellido1, apellido2, Cedula, genero, FechaNacimiento) 
-	values (NULL,nom, ape1, ape2, ced, gen, fecha); END;
+
+	declare idtipopers varchar(45);
+	declare idpers varchar(45);	
+	declare existe INT;
+
+	insert into persona(idpersona, nombre, apellido1, apellido2, Cedula, genero, FechaNacimiento) 
+	values (NULL,nom, ape1, ape2, ced, gen, fecha); 
+	select count(*) into existe from tipoPersona where Nombre= nombretipopersona;
+
+	if (existe=0)
+	THEN
+		insert INTO tipoPersona values (null, nombretipopersona);
+	end if;
+
+	select idpersona into idpers from Persona where Nombre= nombre limit 1;
+	select idtipopersona into idtipopers from tipoPersona where Nombre= nombretipopersona limit 1;
+	insert into tipoxpersona values (null, idpers, idtipopers);
+END;
