@@ -1,6 +1,7 @@
 package expresat;
 
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -32,22 +33,6 @@ public class Conexion
             System.out.println("Error en preparardb");
         }
     }
-
-
-    /*public void establecerConexion()
-    {
-        try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection(server,user,password);
-            System.out.println("conectado correctamente");
-        }
-        catch(Exception e)
-        {
-            System.out.println("Imposible realizar conexion con la BD");
-            e.printStackTrace();
-        }
-    }*/
 
     public Connection getConexion()
     {
@@ -133,5 +118,42 @@ public class Conexion
         catch(Exception e){}
         }
     }
+
+    public boolean registrarUsuario(String nick, String pass, String rol, String persona) 
+    {
+        String cedula= persona.split("_")[persona.split("_").length-1]; // obtenemos la cedula de la persona
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call registrarUsuarios('"+nick+"','"+pass+"','"+rol+"','"+cedula+"');");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        return false;
+    }
     
+    public ArrayList<String> devolverListaPersonas()
+    {        
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call retornarPersonasSinCuenta();");
+            while(r.next())
+            {
+                lista.add(r.getString("apellido1")+"_"+r.getString("nombre")+"_"+r.getString("cedula"));
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
 }

@@ -4,6 +4,12 @@ public class PaginaPrincipal extends javax.swing.JFrame
 {
     String usuario;
     String rol;
+    Registrar_Usuario registrar_Usuario;        // instancias de las diferentes ventana para que no se abran mas de una vez
+    Registro_Denuncia registro_Denuncia;
+    Registrar_Categoria registrar_Categoria;
+    Registrar_Entidad registrar_Entidad;
+    Registrar_Persona registrar_Persona;
+    Contrato contrato;
     
     public PaginaPrincipal(String user, String rol) 
     {
@@ -125,19 +131,27 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-         new Registrar_Persona().setVisible(true);
-            }
-        });
+         if(registrar_Persona == null)
+        {
+            registrar_Persona=new Registrar_Persona();
+            registrar_Persona.setVisible(true);
+        }
+        else
+        {
+            registrar_Persona.show();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-        new Registro_Denuncia().setVisible(true);
-            }
-        });
+        if(registro_Denuncia == null)
+        {
+            registro_Denuncia=new Registro_Denuncia();
+            registro_Denuncia.setVisible(true);
+        }
+        else
+        {
+            registro_Denuncia.show();
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -149,27 +163,44 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-        new Registrar_Categoria().setVisible(true);
-            }
-        });        
+        if(registrar_Categoria == null)
+        {
+            registrar_Categoria=new Registrar_Categoria();
+            registrar_Categoria.setVisible(true);
+        }
+        else
+        {
+            registrar_Categoria.show();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-        new Registrar_Entidad().setVisible(true);
-            }
-        });
+        if(registrar_Entidad == null)
+        {
+            registrar_Entidad=new Registrar_Entidad();
+            registrar_Entidad.setVisible(true);
+        }
+        else
+        {
+            registrar_Entidad.show();
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registrar_Usuario().setVisible(true);
+        if(registrar_Usuario == null && contrato== null)
+        {
+            registrar_Usuario=new Registrar_Usuario(contrato);
+            registrar_Usuario.setVisible(true);
+        }
+        else
+        {
+            if (registrar_Usuario != null)
+            {
+                registrar_Usuario.show();
             }
-        });        // TODO add your handling code here:
+            else
+                contrato.show();
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

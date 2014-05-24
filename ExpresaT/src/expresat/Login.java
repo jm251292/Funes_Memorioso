@@ -101,7 +101,7 @@ public class Login extends javax.swing.JFrame
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         conexion.preparardb();      // establece conexion con la base de datos
         
-        if (conexion.autenticar(this.jTextField1.getText(), String.valueOf(this.jPasswordField1.getPassword()), this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText()))
+        if ((this.jRadioButton1.isSelected() || this.jRadioButton2.isSelected()) && conexion.autenticar(this.jTextField1.getText(), String.valueOf(this.jPasswordField1.getPassword()), this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText()))
         {
             conexion.prueba();
             PaginaPrincipal pagina=new PaginaPrincipal(this.jTextField1.getText(),this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText());
@@ -112,6 +112,8 @@ public class Login extends javax.swing.JFrame
         {
             this.jLabel3.setVisible(true);
         }
+        
+        conexion.destruir();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
