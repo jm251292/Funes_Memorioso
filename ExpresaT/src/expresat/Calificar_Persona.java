@@ -44,21 +44,32 @@ public class Calificar_Persona extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(null);
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("1 Estrella");
+        getContentPane().add(jRadioButton1);
+        jRadioButton1.setBounds(478, 10, 130, 23);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("2 Estrellas");
+        getContentPane().add(jRadioButton2);
+        jRadioButton2.setBounds(478, 50, 130, 23);
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("3 Estrellas");
+        getContentPane().add(jRadioButton3);
+        jRadioButton3.setBounds(478, 90, 130, 23);
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setText("4 Estrellas");
+        getContentPane().add(jRadioButton4);
+        jRadioButton4.setBounds(478, 130, 130, 23);
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setText("5 Estrellas");
+        getContentPane().add(jRadioButton5);
+        jRadioButton5.setBounds(478, 170, 130, 23);
 
         jButton1.setText("Aceptar");
         jButton1.setMaximumSize(new java.awt.Dimension(75, 23));
@@ -68,6 +79,8 @@ public class Calificar_Persona extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(478, 240, 80, 23);
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -75,18 +88,29 @@ public class Calificar_Persona extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(626, 240, 80, 23);
 
         jList1.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane2.setViewportView(jList1);
 
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(10, 10, 410, 568);
+
         buttonGroup1.add(jRadioButton6);
         jRadioButton6.setText("10 Estrellas");
+        getContentPane().add(jRadioButton6);
+        jRadioButton6.setBounds(626, 170, 110, 23);
 
         buttonGroup1.add(jRadioButton7);
         jRadioButton7.setText("9 Estrellas");
+        getContentPane().add(jRadioButton7);
+        jRadioButton7.setBounds(626, 130, 110, 23);
 
         buttonGroup1.add(jRadioButton8);
         jRadioButton8.setText("8 Estrellas");
+        getContentPane().add(jRadioButton8);
+        jRadioButton8.setBounds(626, 90, 110, 23);
 
         buttonGroup1.add(jRadioButton9);
         jRadioButton9.setText("7 Estrellas");
@@ -95,69 +119,13 @@ public class Calificar_Persona extends javax.swing.JFrame {
                 jRadioButton9ActionPerformed(evt);
             }
         });
+        getContentPane().add(jRadioButton9);
+        jRadioButton9.setBounds(626, 50, 110, 23);
 
         buttonGroup1.add(jRadioButton10);
         jRadioButton10.setText("6 Estrellas");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton2)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton3)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton4)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton10)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton9)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton8)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton7)
-                                .addGap(17, 17, 17)
-                                .addComponent(jRadioButton6)))
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        getContentPane().add(jRadioButton10);
+        jRadioButton10.setBounds(626, 10, 110, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -167,7 +135,7 @@ public class Calificar_Persona extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed

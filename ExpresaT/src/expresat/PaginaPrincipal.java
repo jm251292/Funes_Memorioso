@@ -2,8 +2,8 @@ package expresat;
 
 public class PaginaPrincipal extends javax.swing.JFrame 
 {
-    String usuario;
-    String rol;
+    String usuario;     // variable que guarda el usuario que se logueó
+    String rol;         // rol del usuario que se logueó
     Registrar_Usuario registrar_Usuario;        // instancias de las diferentes ventana para que no se abran mas de una vez
     Registro_Denuncia registro_Denuncia;
     Registrar_Categoria registrar_Categoria;
@@ -14,26 +14,32 @@ public class PaginaPrincipal extends javax.swing.JFrame
     public PaginaPrincipal(String user, String rol) 
     {
         initComponents();
-        setUsuario(user);
+        setUsuario(user);       // métodos getter y setter necesarios
         setRol(rol);
+        
+        activarControles();
     }
 
-    public String getUsuario() {
+    public String getUsuario() 
+    {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(String usuario) 
+    {
         this.usuario = usuario;
     }
 
-    public void setRol(String rol) {
+    public void setRol(String rol) 
+    {
         this.rol = rol;
     }
 
-    public String getRol() {
+    public String getRol() 
+    {
         return rol;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,6 +49,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -91,6 +98,17 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jPanel1.add(jButton4);
         jButton4.setBounds(10, 120, 160, 23);
 
+        jButton8.setText("Cerrar Sesión");
+        jButton8.setMaximumSize(new java.awt.Dimension(135, 23));
+        jButton8.setMinimumSize(new java.awt.Dimension(135, 23));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton8);
+        jButton8.setBounds(10, 390, 120, 23);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 20, 280, 420);
 
@@ -131,7 +149,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         if(registrar_Persona == null)
+        if(registrar_Persona == null)   // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
         {
             registrar_Persona=new Registrar_Persona();
             registrar_Persona.setVisible(true);
@@ -143,7 +161,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(registro_Denuncia == null)
+        if(registro_Denuncia == null)  // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
         {
             registro_Denuncia=new Registro_Denuncia();
             registro_Denuncia.setVisible(true);
@@ -163,7 +181,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(registrar_Categoria == null)
+        if(registrar_Categoria == null) // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
         {
             registrar_Categoria=new Registrar_Categoria();
             registrar_Categoria.setVisible(true);
@@ -175,7 +193,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if(registrar_Entidad == null)
+        if(registrar_Entidad == null)       // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
         {
             registrar_Entidad=new Registrar_Entidad();
             registrar_Entidad.setVisible(true);
@@ -187,7 +205,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if(registrar_Usuario == null && contrato== null)
+        if(registrar_Usuario == null && contrato== null)        // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
         {
             registrar_Usuario=new Registrar_Usuario(contrato);
             registrar_Usuario.setVisible(true);
@@ -211,6 +229,21 @@ public class PaginaPrincipal extends javax.swing.JFrame
         });
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    // Botón Cerrar Sesión 
+        
+        if(registrar_Usuario!=null)registrar_Usuario.dispose();        
+        if(registro_Denuncia!=null)registro_Denuncia.dispose();
+        if(registrar_Categoria!=null)registrar_Categoria.dispose();
+        if(registrar_Entidad!=null)registrar_Entidad.dispose();
+        if(registrar_Persona!=null)registrar_Persona.dispose();
+        if(contrato!=null)contrato.dispose();
+        
+        Login login = new Login();
+        login.show();      // muestra la ventana de Login
+        this.dispose();     // libera esta ventana de memoria
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -219,7 +252,16 @@ public class PaginaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    private void activarControles() // si es un usuario no deberia tener acceso a los controles administrativos
+    {
+        if(rol.equals("Usuario"))
+        {
+            this.jPanel2.setVisible(false);
+        }
+    }
 }

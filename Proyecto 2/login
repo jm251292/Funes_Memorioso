@@ -1,0 +1,10 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `login` (in nic varchar(100), in pass varchar(100), in roll varchar(100))
+BEGIN
+	select count(*) from usuario where nick = nic and contraseña = md5(pass) and rol = roll and bloqueado = false;
+END

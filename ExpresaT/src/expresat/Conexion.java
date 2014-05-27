@@ -119,13 +119,28 @@ public class Conexion
         }
     }
 
-    public boolean registrarUsuario(String nick, String pass, String rol, String persona) 
+public boolean registrarUsuario(String nick, String pass, String rol, String persona) 
     {
-        String cedula= persona.split("_")[persona.split("_").length-1]; // obtenemos la cedula de la persona
+        String cedula= persona.split("_")[persona.split("_").length-1]; // obtenemos la cedula de la persona ya que viene en el siguiente formato "apellido1_nombre_cedula"
         
         try
         {
             ResultSet r=stmt.executeQuery("call registrarUsuarios('"+nick+"','"+pass+"','"+rol+"','"+cedula+"');");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        return false;
+    }
+
+public boolean registrarPersona(String nom, String ape1, String ape2, String Ced, String Gen, String fecha,String nombretipopersona)
+    {
+        try
+        {
+            ResultSet r=stmt.executeQuery("call ins_Persona('"+nom+"','"+ape1+"','"+ape2+"','"+Ced+"','"+Gen+"','"+fecha+"','"+nombretipopersona+"');");
             return true;
         }
         catch(Exception e)
@@ -156,4 +171,51 @@ public class Conexion
                
         return lista;
     }
+    
+    public ArrayList<String> devolverListaEntes()
+    {        
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call retornarEntidad();");
+            while(r.next())
+            {
+                if(r.getString("cedula") != null) // Condicional que verifica la existencia de una cedula juridica.
+                {
+                lista.add(r.getString("Nombre")+"_"+r.getString("cedula"));
+                }
+                else {lista.add(r.getString("Nombre"));}
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+    
+    public ArrayList<String> devolverListaTiposPersona()
+    {        
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call retornarTipoPersona();");
+            while(r.next())
+            {
+                lista.add(r.getString("Nombre"));
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+
 }

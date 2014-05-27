@@ -1,7 +1,7 @@
 package expresat;
 
 import javax.swing.JOptionPane;
-
+// Clase que generara el contrato de uso de la aplicacion cada vez que se cree un nuevo usuario.
 public class Contrato extends javax.swing.JFrame 
 {
     String nick, pass, rol, persona;
@@ -75,22 +75,27 @@ public class Contrato extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
+        JOptionPane.showMessageDialog(null, "A falta de la aceptación del contrato de uso, el usuario no se ha creado");
+        this.dispose(); // Cierra la ventana de contrato y no crea el usuario si no aceptan el mismo
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(this.jRadioButton2.isSelected())
         {
-            Conexion conexion = new Conexion();
-            conexion.preparardb();
+            Conexion conexion = new Conexion(); // crea una nueva conexion con la base de datos
+            conexion.preparardb(); // Funcion en la forma principal que prepara la base de datos para realizar trabajos desde la interfaz
             
             
             if (conexion.registrarUsuario(nick, pass, rol, persona))
             {
-                JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+                JOptionPane.showMessageDialog(null, "Usuario registrado correctamente"); // Parece haber problemas aqui ID no puede ser null xq en la tabla cartesiana hay problemas
                 this.dispose();
             }
-            
+            else if (this.jRadioButton1.isSelected())
+            {
+                 JOptionPane.showMessageDialog(null, "A falta de la aceptación del contrato de uso, el usuario no se ha creado");
+                 this.dispose(); // Cierra la ventana de contrato y no crea el usuario si no aceptan el mismo
+            }
             conexion.destruir();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

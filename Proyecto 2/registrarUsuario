@@ -1,0 +1,11 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `registrarUsuarios` (in nic varchar(100), in pass varchar(100), in roll varchar(100), in ID varchar(50))
+BEGIN
+	insert into Usuario (nick, contraseña, rol, bloqueado) values (nic, md5(pass), roll, false);	
+	insert into UsuarioxPersona (Usuario_Usuario,Persona_idPersona) values ((select max(Usuario) from Usuario limit 1), (select idPersona from Persona where cedula= ID limit 1));
+END

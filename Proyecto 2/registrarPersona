@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `registrarPersona` (in nom varchar(50), in ape1 varchar(50), in ape2 varchar(50), in ced varchar(50), 
+									in gen VARCHAR(50), in fecha DATE)
+BEGIN
+	insert into Persona (nombre, apellido1, apellido2, Cedula, Genero, FechaNacimiento) values ();	
+	insert into UsuarioxPersona (Usuario_Usuario,Persona_idPersona) values ((select max(Usuario) from Usuario limit 1), (select idPersona from Persona where cedula= ID limit 1));
+END

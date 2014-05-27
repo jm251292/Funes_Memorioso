@@ -2,23 +2,14 @@ package expresat;
 
 public class Login extends javax.swing.JFrame 
 {
-    Conexion conexion;
+    Conexion conexion; // crea la instancia para acceder a las funciones de conexión con la base de datos
     
     public Login() 
     {
         initComponents();
-        this.jLabel3.setVisible(false);
+        this.jLabel3.setVisible(false); // mensaje de error lo inhabilita para cuando ocurra uno
         conexion= new Conexion();
         this.setSize(700, 500);
-        /*
-         
-        Conexion x;
-        x= new Conexion();
-        //x.establecerConexion();
-        x.preparardb();
-        x.prueba();
-         
-         */
     }
 
     @SuppressWarnings("unchecked")
@@ -101,19 +92,18 @@ public class Login extends javax.swing.JFrame
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         conexion.preparardb();      // establece conexion con la base de datos
         
-        if ((this.jRadioButton1.isSelected() || this.jRadioButton2.isSelected()) && conexion.autenticar(this.jTextField1.getText(), String.valueOf(this.jPasswordField1.getPassword()), this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText()))
+        if ((this.jRadioButton1.isSelected() || this.jRadioButton2.isSelected()) && conexion.autenticar(this.jTextField1.getText(), String.valueOf(this.jPasswordField1.getPassword()), this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText()))   //verifica si se loguea correctamente y ademas si completo todos los campoa
         {
-            conexion.prueba();
-            PaginaPrincipal pagina=new PaginaPrincipal(this.jTextField1.getText(),this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText());
-            pagina.show();
-            this.dispose();
+            PaginaPrincipal pagina=new PaginaPrincipal(this.jTextField1.getText(),this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText());       // redirecciona a la ventana de Control una vez que el usuario se logueo satisfactoriamente
+            pagina.show();      // muestra la ventana principal
+            this.dispose();     // libera esta ventana de memoria
         }
         else
         {
-            this.jLabel3.setVisible(true);
+            this.jLabel3.setVisible(true);  // si no se logró autenticar correctamente se da el error
         }
         
-        conexion.destruir();
+        conexion.destruir();                // cierra la conexión temporalmente
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

@@ -1,7 +1,13 @@
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
+select * from persona;
+
+delete from tipopersona where idtipopersona =1;
+
+call ins_persona('Natalia','Vargas','Arias','2-9483-5824','Femenino','1994-04-26','Estudiante universitario');
+
+call login('deby','terminales','Usuario');
+select idPersona from Persona where cedula= '1-2345-6789' limit 1;
+insert into usuarioxpersona (usuario_usuario, Persona_idPersona) values (7,1);
+drop procedure ins_persona;
 DELIMITER $$
 
 CREATE PROCEDURE `ins_persona` (IN nom VARCHAR(45), IN ape1 VARCHAR(45), IN ape2 VARCHAR(45), 
@@ -26,3 +32,11 @@ BEGIN
 		insert into tipoxpersona values (null, idpers, idtipopers);
 	end if;
 END;
+
+delete Persona on cascade;
+show
+
+select * from ente;
+select * from tipoPersona;
+select * from TipoxPersona;
+select * from usuario;
