@@ -1,0 +1,27 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `ins_Ente` (in nom varchar(50), in ced varchar(50), in nombreCategoria varchar(50), in Country varchar(50), 
+in prov varchar(50), in can varchar(50), in dist varchar(50), in bar varchar(50))
+
+BEGIN
+	declare idcat varchar(45);
+	declare idinst varchar(45);	
+	declare existe INT;
+
+	insert into ente values (null, nom, cedula); 
+	select count(*) into existe from categoria where Nombre= nombreCategoria;
+
+	if (existe=0)
+	THEN
+		insert INTO categoria values (null, nombreCategoria);
+	else 
+		select idente into idinst from ente where Nombre= nom limit 1;
+		select idcategoria into idcat from categoria where Nombre= nombreCategoria limit 1;
+		insert into direccion values (null, country, prov, can, dist, bar, idinst);
+		insert into categoriaxente values (null, idinst, idcat);
+	end if;
+END;

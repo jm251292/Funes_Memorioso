@@ -145,6 +145,9 @@ public class Registrar_Usuario extends javax.swing.JFrame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jPasswordField1.setText(null);
+        jPasswordField2.setText(null);
+        jTextField5.setText(null);
         this.dispose();     // boton de cancelar
     }//GEN-LAST:event_jButton2ActionPerformed
 

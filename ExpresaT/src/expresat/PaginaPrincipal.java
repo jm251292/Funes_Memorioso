@@ -50,6 +50,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jButton7 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -69,7 +70,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(10, 30, 160, 23);
+        jButton1.setBounds(10, 30, 220, 23);
 
         jButton2.setText("Ver denuncias");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +79,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(10, 60, 160, 23);
+        jButton2.setBounds(10, 60, 220, 23);
 
         jButton7.setText("Calificar persona");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -87,16 +88,16 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel1.add(jButton7);
-        jButton7.setBounds(10, 90, 160, 23);
+        jButton7.setBounds(10, 90, 220, 23);
 
-        jButton4.setText("Registro de categoria");
+        jButton4.setText("Registro de categoria de Personas");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(10, 120, 160, 23);
+        jButton4.setBounds(10, 120, 220, 23);
 
         jButton8.setText("Cerrar Sesión");
         jButton8.setMaximumSize(new java.awt.Dimension(135, 23));
@@ -108,6 +109,15 @@ public class PaginaPrincipal extends javax.swing.JFrame
         });
         jPanel1.add(jButton8);
         jButton8.setBounds(10, 390, 120, 23);
+
+        jButton9.setText("Registro de Categoría de Entes");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9);
+        jButton9.setBounds(10, 150, 220, 23);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 20, 280, 420);
@@ -122,7 +132,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel2.add(jButton3);
-        jButton3.setBounds(10, 30, 170, 23);
+        jButton3.setBounds(10, 30, 220, 23);
 
         jButton5.setText("Registro de entidades");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +141,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel2.add(jButton5);
-        jButton5.setBounds(10, 60, 170, 23);
+        jButton5.setBounds(10, 60, 220, 23);
 
         jButton6.setText("Registro de usuarios");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +150,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel2.add(jButton6);
-        jButton6.setBounds(10, 90, 170, 23);
+        jButton6.setBounds(10, 90, 220, 23);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(320, 20, 280, 420);
@@ -244,6 +254,14 @@ public class PaginaPrincipal extends javax.swing.JFrame
         this.dispose();     // libera esta ventana de memoria
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RegistrarCategoriaEmpresa().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -253,6 +271,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

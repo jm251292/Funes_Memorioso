@@ -40,3 +40,6 @@ select * from ente;
 select * from tipoPersona;
 select * from TipoxPersona;
 select * from usuario;
+select * from categoria;
+select * from categoriaxente;
+

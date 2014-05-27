@@ -150,7 +150,54 @@ public boolean registrarPersona(String nom, String ape1, String ape2, String Ced
         
         return false;
     }
+
+public boolean registrarEntidad(String nom, String Ced, String categoria, String Country, String prov,String can, String dis, String bar)
+    {
+        try
+        {
+            ResultSet r=stmt.executeQuery("call ins_Ente('"+nom+"','"+Ced+"','"+categoria+"','"+Country+"','"+prov+"','"+can+"','"+dis+"','"+bar+"');");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        return false;
+    }
     
+public boolean registrarCategoria(String nom)
+    {
+        try
+        {
+            ResultSet r;
+            r = stmt.executeQuery("call ins_tipoPersona('"+nom+"');");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        return false;
+    }
+
+public boolean registrarCategoriaEmpresa(String nom)
+    {
+        try
+        {
+            ResultSet r;
+            r = stmt.executeQuery("call ins_Categoria('"+nom+"');");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        return false;
+    }
+
     public ArrayList<String> devolverListaPersonas()
     {        
         ArrayList<String> lista= new ArrayList();
@@ -217,5 +264,27 @@ public boolean registrarPersona(String nom, String ape1, String ape2, String Ced
                
         return lista;
     }
+    
+    public ArrayList<String> devolverListaCat()
+    {        
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call retornarCategoria();");
+            while(r.next())
+            {
+                lista.add(r.getString("Nombre"));
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+    
 
 }

@@ -4,6 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `ins_categoria` (in nom varchar(100))
+CREATE PROCEDURE `retornarCategoria` ()
 BEGIN
-insert into categoria(idCategoria, Nombre) values (NULL, nom); END;
+	select * from categoria;
+END;

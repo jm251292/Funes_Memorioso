@@ -4,6 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `ins_categoria` (in nom varchar(100))
+CREATE PROCEDURE `ins_tipoPersona` (in nom varchar(100))
 BEGIN
-insert into categoria(idCategoria, Nombre) values (NULL, nom); END;
+	insert into tipoPersona(idTipoPersona, Nombre) values (NULL, nom);
+END;

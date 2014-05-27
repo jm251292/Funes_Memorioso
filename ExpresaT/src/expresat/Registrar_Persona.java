@@ -268,6 +268,12 @@ public class Registrar_Persona extends javax.swing.JFrame
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField3.setText(null);
+        jTextField4.setText(null);
+        jTextField5.setText(null);
+        jLabel6.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -311,10 +317,9 @@ public class Registrar_Persona extends javax.swing.JFrame
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
-   
     private void llenarComboBoxEntes()       // método que accede a la base de datos para rellenar con Entes registrados
     {
-        this.jComboBox1.addItem(""); // Deja un espacio en blanco pues este espacio es opcional
+        
         ArrayList<String> lista= new ArrayList();       // lista con los nombres para añadir al comboBox
         conexion.preparardb();
         lista= conexion.devolverListaEntes();
