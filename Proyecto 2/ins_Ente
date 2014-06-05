@@ -5,23 +5,63 @@
 DELIMITER $$
 
 CREATE PROCEDURE `ins_Ente` (in nom varchar(50), in ced varchar(50), in nombreCategoria varchar(50), in Country varchar(50), 
-in prov varchar(50), in can varchar(50), in dist varchar(50), in bar varchar(50))
+in prov varchar(50), in can varchar(50), in dist varchar(50), in bar varchar(50), in direccion VARCHAR(400))
 
 BEGIN
+	
 	declare idcat varchar(45);
-	declare idinst varchar(45);	
+	declare idpai varchar(45);
+	declare idpro varchar(45);
+	declare idcan varchar(45);
+	declare idbar varchar(45);
+	declare iddis varchar(45);
+	declare idinstitucion varchar(45);	
 	declare existe INT;
+	DECLARE error INTEGER DEFAULT 0;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SET error=1;
+	END;
 
-	insert into ente values (null, nom, cedula); 
-	select count(*) into existe from categoria where Nombre= nombreCategoria;
-
-	if (existe=0)
-	THEN
-		insert INTO categoria values (null, nombreCategoria);
-	else 
-		select idente into idinst from ente where Nombre= nom limit 1;
-		select idcategoria into idcat from categoria where Nombre= nombreCategoria limit 1;
-		insert into direccion values (null, country, prov, can, dist, bar, idinst);
-		insert into categoriaxente values (null, idinst, idcat);
+	insert into ente values (null, nom, cedulajur);
+	select idente into idinstitucion from ente where Nombre= nom limit 1;
+	select idcategoria into idcat from categoria where Nombre= nombreCategoria limit 1;
+	insert into categoriaxente values (null, idinstitucion, idcat);
+	
+	if (country not in (select nombre from pais)) THEN
+		insert into pais values (null, country);
 	end if;
+
+	select idpais into idpai from pais where Nombre= country limit 1;
+
+	if (prov not in (select nombre from provincia)) THEN
+		insert into provincia values (null, prov);
+	end if;
+
+	select idprovincia into idpro from provincia where Nombre= prov limit 1;
+
+	if (dist not in (select nombre from distrito)) THEN
+		insert into distrito values (null, dist);
+	end if;
+
+	select iddistrito into iddis from distrito where Nombre= dist limit 1;
+
+	if (can not in (select nombre from canton)) THEN
+		insert into canton values (null, can);
+	end if;
+
+	select idcanton into idcan from canton where Nombre= can limit 1;
+
+	if (bar not in (select nombre from barrio)) THEN
+		insert into barrio values (null, bar);
+	end if;
+
+	select idbarrio into idbar from barrio where Nombre= bar limit 1;
+
+	insert into direccion values (null, direccion,idinstitucion,idpro,idpai ,idcan,iddis,idbar);
+	IF error=1 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	END IF;
 END;

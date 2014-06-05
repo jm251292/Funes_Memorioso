@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `retornarCategoria` (in nom varchar(100))
+CREATE PROCEDURE `getCategoriaGEN` ()
 BEGIN
-	select nombre from categoria where nombre = nom;
+	select * from categoria ORDER by Nombre;
 END;

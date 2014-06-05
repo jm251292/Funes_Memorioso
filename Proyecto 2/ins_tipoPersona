@@ -6,5 +6,21 @@ DELIMITER $$
 
 CREATE PROCEDURE `ins_tipoPersona` (in nom varchar(100))
 BEGIN
-	insert into tipoPersona(idTipoPersona, Nombre) values (NULL, nom);
+	declare existe int;
+	DECLARE error INTEGER DEFAULT 0;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SET error=1;
+	END;
+
+	select count(*) into existe from tipopersona where NOMBRE = nom;
+
+	IF(existe=0) then
+		insert into tipoPersona(idTipoPersona, Nombre) values (NULL, nom);
+	end if;
+	IF error=1 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	END IF;
 END;

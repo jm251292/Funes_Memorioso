@@ -11,6 +11,13 @@ public class Registrar_Entidad extends javax.swing.JFrame {
         initComponents();
         conexion= new Conexion();
         this.jLabel10.setVisible(false);
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jTextField3.setText("");
+        this.jTextField4.setText("");
+        this.jTextField5.setText("");
+        this.jTextField6.setText("");
+        this.jTextField7.setText("");
         llenarComboBoxCat();       // método que accede a la base de datos para rellenar con las categorias de los entes existentes.
         
     }
@@ -38,6 +45,9 @@ public class Registrar_Entidad extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -85,40 +95,51 @@ public class Registrar_Entidad extends javax.swing.JFrame {
 
         jLabel3.setText("País*:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(10, 20, 60, 14);
+        jLabel3.setBounds(10, 30, 60, 14);
 
         jLabel4.setText("Provincia*:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 60, 80, 14);
+        jLabel4.setBounds(10, 70, 80, 14);
 
         jLabel5.setText("Cantón*:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(10, 100, 80, 14);
+        jLabel5.setBounds(10, 110, 80, 14);
 
         jLabel6.setText("Distrito*:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(10, 140, 80, 14);
+        jLabel6.setBounds(10, 150, 80, 14);
 
         jLabel7.setText("Barrio:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, 180, 50, 20);
+        jLabel7.setBounds(10, 190, 50, 20);
 
-        jLabel8.setText("* campos obligados");
+        jLabel8.setText("* Campos obligados");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(10, 210, 170, 14);
+        jLabel8.setBounds(0, 210, 170, 30);
         jPanel1.add(jTextField3);
-        jTextField3.setBounds(120, 10, 170, 30);
+        jTextField3.setBounds(120, 20, 170, 30);
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(120, 50, 170, 30);
+        jTextField4.setBounds(120, 60, 170, 30);
         jPanel1.add(jTextField5);
-        jTextField5.setBounds(120, 90, 170, 30);
+        jTextField5.setBounds(120, 100, 170, 30);
         jPanel1.add(jTextField6);
-        jTextField6.setBounds(120, 130, 170, 30);
+        jTextField6.setBounds(120, 140, 170, 30);
         jPanel1.add(jTextField7);
-        jTextField7.setBounds(120, 170, 170, 30);
+        jTextField7.setBounds(120, 180, 170, 30);
+
+        jLabel11.setText("Direccion general:");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(320, 20, 180, 14);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(320, 50, 200, 160);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(20, 140, 300, 230);
+        jPanel1.setBounds(10, 130, 530, 240);
 
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(200, 100, 220, 20);
@@ -157,10 +178,16 @@ public class Registrar_Entidad extends javax.swing.JFrame {
         {
             Conexion conexion = new Conexion(); // crea una nueva conexion con la base de datos
             conexion.preparardb(); // Funcion en la forma principal que prepara la base de datos para realizar trabajos desde la interfaz
-             if (conexion.registrarEntidad(jTextField1.getText(),jTextField2.getText(),String.valueOf(jComboBox1.getSelectedItem()),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText())) 
+            if (conexion.registrarEntidad(jTextField1.getText(),jTextField2.getText(),String.valueOf(jComboBox1.getSelectedItem()),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText(), jTextArea1.getText())) 
             {
                 JOptionPane.showMessageDialog(null, "Entidad registrada correctamente");
                 this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "La entidad ingresada YA existe por favor vuelva a intentar con otros datos");
+                this.jTextField1.setText("");
+                conexion.destruir();
             }
             
             conexion.destruir();
@@ -173,6 +200,7 @@ public class Registrar_Entidad extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -182,6 +210,8 @@ public class Registrar_Entidad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

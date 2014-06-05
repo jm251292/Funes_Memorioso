@@ -4,7 +4,6 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `retornarCategoria` (in nom varchar(100))
+CREATE PROCEDURE `get_TipoPersonaGEN` ()
 BEGIN
-	select nombre from categoria where nombre = nom;
-END;
+select Nombre from tipopersona order by nombre; END;

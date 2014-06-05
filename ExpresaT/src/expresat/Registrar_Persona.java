@@ -12,6 +12,11 @@ public class Registrar_Persona extends javax.swing.JFrame
         initComponents();
         conexion= new Conexion();
         this.jLabel6.setVisible(false);
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jTextField3.setText("");
+        this.jTextField4.setText("");
+        this.jTextField5.setText("");
         
         for (int i = 0; i < 31; i++)                    // inicializa los días de enero
         {
@@ -151,7 +156,7 @@ public class Registrar_Persona extends javax.swing.JFrame
         jPanel1.add(jTextField4);
         jTextField4.setBounds(140, 100, 250, 30);
         jPanel1.add(jTextField5);
-        jTextField5.setBounds(230, 150, 70, 20);
+        jTextField5.setBounds(230, 140, 80, 30);
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" }));
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -317,6 +322,7 @@ public class Registrar_Persona extends javax.swing.JFrame
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
+    
     private void llenarComboBoxEntes()       // método que accede a la base de datos para rellenar con Entes registrados
     {
         

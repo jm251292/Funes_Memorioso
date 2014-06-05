@@ -51,11 +51,21 @@ public class Contrato extends javax.swing.JFrame
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("No, acepto los terminos indicados en el contrato.");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton1);
         jRadioButton1.setBounds(10, 400, 662, 23);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Acepto los terminos indicados en el contrato.");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButton2);
         jRadioButton2.setBounds(10, 370, 662, 23);
 
@@ -93,12 +103,20 @@ public class Contrato extends javax.swing.JFrame
             }
             else if (this.jRadioButton1.isSelected())
             {
-                 JOptionPane.showMessageDialog(null, "A falta de la aceptación del contrato de uso, el usuario no se ha creado");
+                 JOptionPane.showMessageDialog(null, "Por favor lea y acepte los terminos de uso");
                  this.dispose(); // Cierra la ventana de contrato y no crea el usuario si no aceptan el mismo
             }
             conexion.destruir();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

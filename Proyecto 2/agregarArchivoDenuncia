@@ -4,20 +4,21 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `registrarUsuarios` (in nic varchar(100), in pass varchar(100), in roll varchar(100), in ID varchar(50))
+CREATE PROCEDURE `agregarArchivoDenuncia` (in FileName varchar(100), in nom varchar(100))
 BEGIN
+	declare idDen int;
 	DECLARE error INTEGER DEFAULT 0;
 	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
 	BEGIN
 		SET error=1;
 	END;
 
-	insert into Usuario (nick, contraseña, rol, bloqueado) values (nic, md5(pass), roll, false);	
-	insert into UsuarioxPersona (Usuario_Usuario,Persona_idPersona) values ((select max(Usuario) from Usuario limit 1), (select idPersona from Persona where cedula= ID limit 1));
-	
+	select idDenuncia into idDen from denuncia where NombreDenuncia= nom limit 1;
+	insert into archivo values (null, fileName, idDen);
+
 	IF error=1 THEN
 		ROLLBACK;
 	ELSE
 		COMMIT;
 	END IF;
-END
+END;

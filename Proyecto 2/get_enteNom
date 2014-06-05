@@ -6,5 +6,5 @@ DELIMITER $$
 
 CREATE PROCEDURE `get_enteNom` (IN nom VARCHAR(45))
 BEGIN
-select Nombre, Cedula from ente 
+select * from ente 
 	WHERE Nombre = nom order by nombre; END;

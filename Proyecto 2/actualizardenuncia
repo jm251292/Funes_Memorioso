@@ -4,16 +4,15 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `registrarUsuarios` (in nic varchar(100), in pass varchar(100), in roll varchar(100), in ID varchar(50))
+CREATE PROCEDURE `actualizardenuncia` (in nom varchar(45), in texto varchar(300))
 BEGIN
 	DECLARE error INTEGER DEFAULT 0;
 	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
 	BEGIN
 		SET error=1;
 	END;
-
-	insert into Usuario (nick, contraseña, rol, bloqueado) values (nic, md5(pass), roll, false);	
-	insert into UsuarioxPersona (Usuario_Usuario,Persona_idPersona) values ((select max(Usuario) from Usuario limit 1), (select idPersona from Persona where cedula= ID limit 1));
+	
+	update Denuncia set denuncia=texto where nombrdenuncia=nom;
 	
 	IF error=1 THEN
 		ROLLBACK;

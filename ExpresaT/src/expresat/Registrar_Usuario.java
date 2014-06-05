@@ -1,6 +1,7 @@
 package expresat;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Registrar_Usuario extends javax.swing.JFrame 
 {
@@ -15,6 +16,9 @@ public class Registrar_Usuario extends javax.swing.JFrame
         this.contrato=contrato;
         conexion = new Conexion();
         llenarComboBoxPersonas();           // llena el ComboBox con personas a las cuales no se les ha asignado una cuenta personal
+        this.jTextField5.setText("");
+        this.jPasswordField2.setText("");
+        this.jPasswordField1.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -121,13 +125,24 @@ public class Registrar_Usuario extends javax.swing.JFrame
         {
             if(this.jPasswordField1.getText().equals(this.jPasswordField2.getText()))   // verifica que la contraseña esta repetida correctamente para términos de seguridad
             {
-                nick=this.jTextField5.getText();        // obtiene el nick del nuevo usuario de los campos de texto
-                pass=this.jPasswordField1.getText();    // obtiene la contraseña del nuevo usuario de los campos de texto
-                persona= String.valueOf(this.jComboBox1.getSelectedItem()); // obtiene la persona con la cual se va a ligar el nuevo usuario de los campos de texto, si algo le pasa a esta persona el usuario responderá por ella
-                rol=this.jRadioButton1.isSelected()?"Administrador":"Usuario"; // obtiene el rol del nuevo usuario de los campos de texto
-                contrato=new Contrato(nick, pass, rol,persona);         // prepara la ventana con el contrato y le pasa los parámetros para crear la nueva cuenta
-                contrato.setVisible(true);                  
-                this.dispose();         // libera y destruye esta ventana
+                conexion.preparardb();
+                if(conexion.VerificarUsuario(jTextField5.getText()))
+                {
+                    conexion.destruir();
+                    nick=this.jTextField5.getText();        // obtiene el nick del nuevo usuario de los campos de texto
+                    pass=this.jPasswordField1.getText();    // obtiene la contraseña del nuevo usuario de los campos de texto
+                    persona= String.valueOf(this.jComboBox1.getSelectedItem()); // obtiene la persona con la cual se va a ligar el nuevo usuario de los campos de texto, si algo le pasa a esta persona el usuario responderá por ella
+                    rol=this.jRadioButton1.isSelected()?"Administrador":"Usuario"; // obtiene el rol del nuevo usuario de los campos de texto
+                    contrato=new Contrato(nick, pass, rol,persona);         // prepara la ventana con el contrato y le pasa los parámetros para crear la nueva cuenta
+                    contrato.setVisible(true);                  
+                    this.dispose();         // libera y destruye esta ventana
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "El nick deseado ya existe por favor modifiquelo");
+                    conexion.destruir();
+                    jTextField5.setText("");
+                }
             }
             else
             {
@@ -145,9 +160,9 @@ public class Registrar_Usuario extends javax.swing.JFrame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jPasswordField1.setText(null);
-        jPasswordField2.setText(null);
-        jTextField5.setText(null);
+        jPasswordField1.setText("");
+        jPasswordField2.setText("");
+        jTextField5.setText("");
         this.dispose();     // boton de cancelar
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -178,7 +193,7 @@ public class Registrar_Usuario extends javax.swing.JFrame
     {
         ArrayList<String> lista= new ArrayList();       // lista con los nombres para añadir al comboBox
         conexion.preparardb();
-        lista= conexion.devolverListaPersonas();
+        lista= conexion.devolverListaPersonasSinCuenta();
         
         for (int i = 0; i < lista.size(); i++)          // ciclo que agraga uno a uno a las personas
         {

@@ -1,0 +1,30 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `InsertarDenunciaEnte` (in texto varchar(300), in privacidad varchar(45), in nomden varchar(45), in nomente varchar(50), in nota int, in user varchar(45))
+BEGIN
+	declare idEnt int;
+	declare idDen int;
+	declare idusu int;
+	DECLARE error INTEGER DEFAULT 0;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SET error=1;
+	END;
+
+	insert into denuncia values (null, texto, privacidad, nomden, 1,1);
+	select idEnte into idEnt from Ente where nombre = nomente;
+	select idDenuncia into idDen from denuncia where nombrdenuncia = nomden;
+	insert into denunciaxente values(null,nota, idEnt, idDen);
+	select Usuario into idusu from usuario where nick=user;
+	insert into usuarioxdenuncia values(null,idusu, idDen);
+
+	IF error=1 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	END IF;
+END;

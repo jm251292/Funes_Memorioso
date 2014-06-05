@@ -8,7 +8,6 @@ public class RegistrarCategoriaEmpresa extends javax.swing.JFrame {
 
     public RegistrarCategoriaEmpresa() {
         initComponents();
-        this.jLabel2.setVisible(false);
     }
 
 
@@ -20,7 +19,6 @@ public class RegistrarCategoriaEmpresa extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 450, 210));
@@ -53,19 +51,12 @@ public class RegistrarCategoriaEmpresa extends javax.swing.JFrame {
         getContentPane().add(jTextField1);
         jTextField1.setBounds(194, 44, 230, 30);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("La categoría ya existe!!");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(60, 100, 330, 30);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
                 // Atras
         this.jTextField1.setText(null);
-        this.jLabel2.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -77,9 +68,13 @@ public class RegistrarCategoriaEmpresa extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(null, "Categoria Para Instituciones/Entes registrada correctamente");
                 this.jTextField1.setText(null);
-                this.dispose();
             }
-            
+            else
+             {
+                JOptionPane.showMessageDialog(null, "La Categoría Registrada YA existe");
+                this.jTextField1.setText(null);
+                this.dispose();
+             }
             conexion.destruir();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -87,7 +82,6 @@ public class RegistrarCategoriaEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

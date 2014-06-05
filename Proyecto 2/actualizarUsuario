@@ -4,17 +4,15 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `registrarUsuarios` (in nic varchar(100), in pass varchar(100), in roll varchar(100), in ID varchar(50))
+CREATE PROCEDURE `actualizarUsuario` (in nom varchar(45), in pass varchar(45), in oldnom varchar(45))
 BEGIN
 	DECLARE error INTEGER DEFAULT 0;
 	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
 	BEGIN
 		SET error=1;
 	END;
+	update usuario set nick=nom, contraseña= md5(pass) where nick=oldnom;
 
-	insert into Usuario (nick, contraseña, rol, bloqueado) values (nic, md5(pass), roll, false);	
-	insert into UsuarioxPersona (Usuario_Usuario,Persona_idPersona) values ((select max(Usuario) from Usuario limit 1), (select idPersona from Persona where cedula= ID limit 1));
-	
 	IF error=1 THEN
 		ROLLBACK;
 	ELSE

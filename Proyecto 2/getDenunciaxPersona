@@ -1,0 +1,13 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `getDenunciaxPersona` (in nom varchar(45))
+BEGIN
+	declare idDen int;
+	select iddenuncia into idDen from denuncia where nombredenuncia = nom;
+	select nombre, cedula, apellido1 from Persona inner join denunciaxPersona on Persona.idPersona=DenunciaxPersona.Persona_idPersona where DenunciaxPersona.denuncia_idDenuncia = idDen;
+	
+END;

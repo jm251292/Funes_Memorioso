@@ -6,4 +6,16 @@ DELIMITER $$
 
 CREATE PROCEDURE `ins_categoria` (in nom varchar(100))
 BEGIN
-insert into categoria(idCategoria, Nombre) values (NULL, nom); END;
+	DECLARE error INTEGER DEFAULT 0;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SET error=1;
+	END;
+	insert into categoria(idCategoria, Nombre) values (NULL, nom); 
+
+	IF error=1 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	end if;
+END;

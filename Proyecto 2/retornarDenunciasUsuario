@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `retornarDenunciasUsuario` (in user varchar(45))
+BEGIN
+	declare idusu int;
+	select usuario into idusu from usuario where nick=user;
+	select nombrdenuncia,denuncia from Denuncia d inner join usuarioxdenuncia ud on d.iddenuncia=ud.denuncia_iddenuncia where ud.usuario_usuario= idusu and activado=1;
+END

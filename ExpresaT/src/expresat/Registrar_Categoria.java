@@ -6,7 +6,7 @@ public class Registrar_Categoria extends javax.swing.JFrame {
 
     public Registrar_Categoria() {
         initComponents();
-        this.jLabel2.setVisible(false);
+        this.jTextField1.setText("");
     }
 
 
@@ -18,7 +18,6 @@ public class Registrar_Categoria extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 450, 210));
@@ -56,12 +55,6 @@ public class Registrar_Categoria extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(100, 130, 73, 23);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel2.setText("La categoría ya existe!!");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(70, 90, 290, 30);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -72,20 +65,23 @@ public class Registrar_Categoria extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.jTextField1.setText(null);
         this.dispose();
-        this.jLabel2.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Crear Categoria
             Conexion conexion = new Conexion(); // crea una nueva conexion con la base de datos
             conexion.preparardb(); // Funcion en la forma principal que prepara la base de datos para realizar trabajos desde la interfaz
-             if (conexion.registrarCategoria(jTextField1.getText())) 
+             if (conexion.registrarCategoriaPer(jTextField1.getText())) 
             {
                 JOptionPane.showMessageDialog(null, "Categoria registrada correctamente");
                 this.jTextField1.setText(null);
                 this.dispose();
             }
-            
+            else
+             {
+                JOptionPane.showMessageDialog(null, "La Categoría Registrada YA existe");
+                this.jTextField1.setText(null);
+             }
             conexion.destruir();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -93,7 +89,6 @@ public class Registrar_Categoria extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

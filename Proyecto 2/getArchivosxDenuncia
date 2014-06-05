@@ -4,7 +4,9 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `retornarCategoria` (in nom varchar(100))
+CREATE PROCEDURE `getArchivosxDenuncia` (in nom varchar(45), in filaName varchar(45))
 BEGIN
-	select nombre from categoria where nombre = nom;
+	declare idDen int;
+	select iddenuncia into idDen from denuncia where nombredenuncia = nom;
+	select * from archivos where denuncia_idDenuncia = idDen;
 END;

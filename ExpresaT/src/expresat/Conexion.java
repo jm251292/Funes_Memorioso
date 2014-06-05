@@ -119,10 +119,10 @@ public class Conexion
         }
     }
 
-public boolean registrarUsuario(String nick, String pass, String rol, String persona) 
+    public boolean registrarUsuario(String nick, String pass, String rol, String persona) 
     {
         String cedula= persona.split("_")[persona.split("_").length-1]; // obtenemos la cedula de la persona ya que viene en el siguiente formato "apellido1_nombre_cedula"
-        
+
         try
         {
             ResultSet r=stmt.executeQuery("call registrarUsuarios('"+nick+"','"+pass+"','"+rol+"','"+cedula+"');");
@@ -132,11 +132,11 @@ public boolean registrarUsuario(String nick, String pass, String rol, String per
         {
             System.out.println(e.getMessage());
         }
-        
+
         return false;
     }
 
-public boolean registrarPersona(String nom, String ape1, String ape2, String Ced, String Gen, String fecha,String nombretipopersona)
+    public boolean registrarPersona(String nom, String ape1, String ape2, String Ced, String Gen, String fecha,String nombretipopersona)
     {
         try
         {
@@ -147,58 +147,162 @@ public boolean registrarPersona(String nom, String ape1, String ape2, String Ced
         {
             System.out.println(e.getMessage());
         }
-        
+
         return false;
     }
 
-public boolean registrarEntidad(String nom, String Ced, String categoria, String Country, String prov,String can, String dis, String bar)
+    public boolean registrarEntidad(String nom, String Ced, String categoria, String Country, String prov,String can, String dis, String bar, String direccion)
     {
         try
-        {
-            ResultSet r=stmt.executeQuery("call ins_Ente('"+nom+"','"+Ced+"','"+categoria+"','"+Country+"','"+prov+"','"+can+"','"+dis+"','"+bar+"');");
-            return true;
+        {   
+            if(verificarEntidad(nom))
+            {
+                ResultSet r=stmt.executeQuery("call ins_Ente('"+nom+"','"+Ced+"','"+categoria+"','"+Country+"','"+prov+"','"+can+"','"+dis+"','"+bar+"','"+direccion+"');");
+                return true;
+            }
         }
         catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
-        
+
+        return false;
+    }
+
+    public boolean registrarCategoriaPer(String nom)
+        {   
+            try
+            {   
+                if(verificaCategoriaPersona(nom))
+                {
+                    ResultSet r;
+                    r = stmt.executeQuery("call ins_tipoPersona('"+nom+"');");
+                    return true;
+                }
+
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
+            return false;
+        }
+    
+        public boolean registrarCategoriaEmpresa(String nom)
+        {   
+            try
+            {   
+                if(verificaCategoriaEmpresa(nom))
+                {
+                    ResultSet r;
+                    r = stmt.executeQuery("call ins_categoria('"+nom+"');");
+                    return true;
+                }
+
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
+            return false;
+        }
+
+    public boolean verificaCategoriaPersona(String nom)
+        {
+             try
+            {   
+                ResultSet r;
+                r = stmt.executeQuery("call getTipoPersonas('"+nom+"');");
+                
+                r.next();
+                if(r.getString("nombre")==null || r.getString("nombre").equals(""))
+                {
+                    return true;
+                }
+                else
+                    return false;    
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
+            return true;
+        }
+
+    public boolean verificaCategoriaEmpresa(String nom)
+        {
+             try
+            {   
+                ResultSet r;
+                r = stmt.executeQuery("call retornarCategoria('"+nom+"');");
+
+                r.next();
+
+                if(r.getString("nombre")==null || r.getString("nombre").equals(""))
+                {
+                    return true;
+                }
+                else
+                    return false;    
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
+            return true;
+        }
+
+    public boolean VerificarUsuario(String nick) 
+    {
+         try
+        {   
+            ResultSet r;
+            r = stmt.executeQuery("call retornarUsuario('"+nick+"');");
+
+            r.next();
+
+            if(r.getString("Nick")==null || r.getString("Nick").equals(""))
+            {
+                return true;
+            }
+            else
+                return false;    
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return true;
+    }
+    
+    public boolean verificarEntidad(String nom)
+    {
+        try
+        {   
+            ResultSet r;
+            r = stmt.executeQuery("call retornarEntidad('"+nom+"');");
+            r.next();
+                // Verificacion de una unica empresa con los datos obligatorios
+            if((r.getString("Nombre")==null ))
+            {
+                return true;
+            }    
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return true;
+        }
+
         return false;
     }
     
-public boolean registrarCategoria(String nom)
-    {
-        try
-        {
-            ResultSet r;
-            r = stmt.executeQuery("call ins_tipoPersona('"+nom+"');");
-            return true;
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        
-        return false;
-    }
-
-public boolean registrarCategoriaEmpresa(String nom)
-    {
-        try
-        {
-            ResultSet r;
-            r = stmt.executeQuery("call ins_Categoria('"+nom+"');");
-            return true;
-        }
-        catch(Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        
-        return false;
-    }
-
-    public ArrayList<String> devolverListaPersonas()
+    public ArrayList<String> devolverListaPersonasSinCuenta()
     {        
         ArrayList<String> lista= new ArrayList();
         
@@ -219,20 +323,16 @@ public boolean registrarCategoriaEmpresa(String nom)
         return lista;
     }
     
-    public ArrayList<String> devolverListaEntes()
+    public ArrayList<String> devolverListaDenuncias(String nom)
     {        
         ArrayList<String> lista= new ArrayList();
         
         try
         {
-            ResultSet r=stmt.executeQuery("call retornarEntidad();");
+            ResultSet r=stmt.executeQuery("call retornarDenunciasUsuario('"+nom+"');");
             while(r.next())
             {
-                if(r.getString("cedula") != null) // Condicional que verifica la existencia de una cedula juridica.
-                {
-                lista.add(r.getString("Nombre")+"_"+r.getString("cedula"));
-                }
-                else {lista.add(r.getString("Nombre"));}
+                lista.add(r.getString("nombrdenuncia")+"_"+r.getString("denuncia"));
             } 
         }
         catch(Exception e)
@@ -244,13 +344,59 @@ public boolean registrarCategoriaEmpresa(String nom)
         return lista;
     }
     
+    public ArrayList<String> devolverListaPersonas()
+    {        
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call retornarPersonasGEN();");
+            while(r.next())
+            {
+                lista.add(r.getString("apellido1")+"_"+r.getString("nombre")+"_"+r.getString("cedula"));
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+    
+    public ArrayList<String> devolverListaEntes()
+    {        
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call retornarEntidadGEN();");
+            while(r.next())
+            {
+                if(r.getString("cedulajur") != null) // Condicional que verifica la existencia de una cedula juridica.
+                {
+                    lista.add(r.getString("Nombre")+"_"+r.getString("cedulajur"));
+                }
+                else {lista.add(r.getString("Nombre"));}
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+         
+        return lista;
+    }
+    
     public ArrayList<String> devolverListaTiposPersona()
     {        
         ArrayList<String> lista= new ArrayList();
         
         try
         {
-            ResultSet r=stmt.executeQuery("call retornarTipoPersona();");
+            ResultSet r=stmt.executeQuery("call get_TipoPersonaGEN();");
             while(r.next())
             {
                 lista.add(r.getString("Nombre"));
@@ -271,7 +417,7 @@ public boolean registrarCategoriaEmpresa(String nom)
         
         try
         {
-            ResultSet r=stmt.executeQuery("call retornarCategoria();");
+            ResultSet r=stmt.executeQuery("call getCategoriaGEN();");
             while(r.next())
             {
                 lista.add(r.getString("Nombre"));
@@ -285,6 +431,110 @@ public boolean registrarCategoriaEmpresa(String nom)
                
         return lista;
     }
-    
 
+    void insertarDenunciaPersona(String nombre, String descripcion, String listaArchivos, String persona, String privacidad, int nota, String usuario) 
+    {
+        String cedula= persona.split("_")[persona.split("_").length-1];
+        String lista[]=listaArchivos.split("\n");
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call InsertarDenunciaPersona('"+descripcion+"','"+privacidad+"','"+nombre+"','"+cedula+"',"+nota+",'"+usuario+"');");
+            
+            for (int i = 0; i < lista.length; i++)
+            {
+                r=stmt.executeQuery("call agregararchivoDenuncia('"+lista[i]+"','"+nombre+"');");
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al iinsertar denuncia");
+        }
+    }
+    
+    void desactivardenuncia(String nombre)
+    {
+        try
+        {
+            ResultSet r=stmt.executeQuery("call desactivardenuncia('"+nombre+"');");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al eliminar denuncia");
+        }
+    }
+    
+    void actualizarDenuncia(String nombre, String texto)
+    {
+        try
+        {
+            ResultSet r=stmt.executeQuery("call actualizardenuncia('"+nombre+"','"+texto+"');");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al actualizar denuncia");
+        }
+    }
+    
+    void insertarDenunciaEnte(String nombre, String descripcion, String listaArchivos, String ente, String privacidad, int nota, String usuario) 
+    {
+        String nombreEnte= ente.split("_")[0];
+        String lista[]=listaArchivos.split("\n");
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call InsertarDenunciaEnte('"+descripcion+"','"+privacidad+"','"+nombre+"','"+nombreEnte+"',"+nota+",'"+usuario+"');");
+            
+            for (int i = 0; i < lista.length; i++)
+            {
+                r=stmt.executeQuery("call agregararchivoDenuncia('"+lista[i]+"','"+nombre+"');");
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al iinsertar denuncia");
+        }
+    }
+
+    boolean verificarPersona(String datosPersona) 
+    {
+        try
+        {   
+            ResultSet r;
+            r = stmt.executeQuery("call retornarPersona('"+datosPersona.split("_")[datosPersona.split("_").length-1]+"');");
+            r.next();
+                // Verificacion de una unica persona con su numero de cedula
+            if((r.getString("Nombre")==null ))
+            {
+                return false;
+            }
+            else
+                return true;    
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+
+    boolean actualizarUsuario(String nuevoNick, String pass, String viejoNick) 
+    {
+        try
+        {
+            ResultSet r=stmt.executeQuery("call actualizarUsuario('"+nuevoNick+"','"+pass+"','"+viejoNick+"');");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
 }

@@ -12,10 +12,16 @@ BEGIN
 	declare idtipopers varchar(45);
 	declare idpers varchar(45);	
 	declare existe INT;
-
+	DECLARE error INTEGER DEFAULT 0;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	
 	insert into persona( nombre, apellido1, apellido2, Cedula, genero, FechaNacimiento) 
 	values (nom, ape1, ape2, ced, gen, fecha); 
 	select count(*) into existe from tipoPersona where Nombre= nombretipopersona;
+
+	BEGIN
+		SET error=1;
+	END;
 
 	if (existe=0)
 	THEN
@@ -25,4 +31,11 @@ BEGIN
 		select idtipopersona into idtipopers from tipoPersona where Nombre= nombretipopersona limit 1;
 		insert into tipoxpersona values (null, idpers, idtipopers);
 	end if;
+	
+	IF error=1 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	end if;
+	
 END;

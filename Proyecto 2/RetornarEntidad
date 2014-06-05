@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `retornarEntidad` ()
+CREATE PROCEDURE `retornarEntidad` (in nom varchar(45))
 BEGIN
-select * from ente;
-END
+	select * from ente where nombre=nom;
+END;
