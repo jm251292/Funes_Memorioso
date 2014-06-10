@@ -4,7 +4,6 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `get_personaNom` (IN nom VARCHAR(45))
+CREATE PROCEDURE `get_personaNom` ()
 BEGIN
-select nombre, apellido1, apellido2 from persona 
-	WHERE nombre = nom order by Nombre; END;
+select nombre, apellido1, apellido2, cedula from persona order by Nombre; END;

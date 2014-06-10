@@ -4,11 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `getAllDenuncias` (in rol varchar(45))
+CREATE PROCEDURE `getusers` (in user varchar(45))
 BEGIN
-	if (rol="Usuario") then
-		select Denuncia,nombrdenuncia from Denuncia where activado=1 and privacidad="Público";
-	ELSE
-		select Denuncia,nombrdenuncia from Denuncia where activado=1;
-	end if;
-END;
+	select nick from usuario where user <> nick; 
+END

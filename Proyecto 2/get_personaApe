@@ -4,11 +4,6 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `getAllDenuncias` (in rol varchar(45))
+CREATE PROCEDURE `get_personaApe1` ()
 BEGIN
-	if (rol="Usuario") then
-		select Denuncia,nombrdenuncia from Denuncia where activado=1 and privacidad="Público";
-	ELSE
-		select Denuncia,nombrdenuncia from Denuncia where activado=1;
-	end if;
-END;
+	select nombre, apellido1, apellido2, cedula from persona order by apellido1, apellido2; END;

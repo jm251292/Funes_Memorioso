@@ -4,11 +4,11 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `getAllDenuncias` (in rol varchar(45))
+CREATE PROCEDURE `getdistrito` (in nom varchar(45))
 BEGIN
-	if (rol="Usuario") then
-		select Denuncia,nombrdenuncia from Denuncia where activado=1 and privacidad="Público";
-	ELSE
-		select Denuncia,nombrdenuncia from Denuncia where activado=1;
-	end if;
-END;
+	declare idE int;
+	declare idp int;
+	select idente into idE from ente where Nombre = nom;
+	select distrito_iddistrito into idp from Direccion where ente_idente= idE;
+	select nombre from distrito where iddistrito=idp;
+END

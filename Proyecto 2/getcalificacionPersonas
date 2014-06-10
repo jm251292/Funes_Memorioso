@@ -4,11 +4,9 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `getAllDenuncias` (in rol varchar(45))
+CREATE PROCEDURE `getCalificacionPersonas` (in ced varchar(45))
 BEGIN
-	if (rol="Usuario") then
-		select Denuncia,nombrdenuncia from Denuncia where activado=1 and privacidad="Público";
-	ELSE
-		select Denuncia,nombrdenuncia from Denuncia where activado=1;
-	end if;
+	declare idPer int;
+	select idpersona into idPer from persona where cedula = ced;
+	select calificacion from denunciaxpersona where persona_idpersona = idper;
 END;

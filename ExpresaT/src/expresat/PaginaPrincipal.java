@@ -1,5 +1,7 @@
 package expresat;
 
+import javax.swing.JOptionPane;
+
 public class PaginaPrincipal extends javax.swing.JFrame 
 {
     String usuario;     // variable que guarda el usuario que se logueó
@@ -7,12 +9,16 @@ public class PaginaPrincipal extends javax.swing.JFrame
     Registrar_Usuario registrar_Usuario;        // instancias de las diferentes ventana para que no se abran mas de una vez
     Registro_Denuncia_Persona registro_Denuncia_Persona;
     Registro_Denuncia_Ente registro_Denuncia_Ente;
+    reportar_Usuario reportar_Usuario;
+    VisualizarEntes visualizarEntes;
     Registrar_Categoria registrar_Categoria;
     Borrar_Denuncia borrar_Denuncia;
     Registrar_Entidad registrar_Entidad;
-    home perfil;
+    RegistrarCategoriaEmpresa registrarCategoriaEmpresa;
+    Home perfil;
     Registrar_Persona registrar_Persona;
     Contrato contrato;
+    Conexion conexion;
     
     public PaginaPrincipal(String user, String rol) 
     {
@@ -21,6 +27,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
         setRol(rol);
         
         activarControles();
+        conexion= new Conexion();
     }
 
     public String getUsuario() 
@@ -52,16 +59,22 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -79,7 +92,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 30, 220, 23);
 
-        jButton2.setText("Ver denuncias");
+        jButton2.setText("Ver denuncias*");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -105,17 +118,6 @@ public class PaginaPrincipal extends javax.swing.JFrame
         });
         jPanel1.add(jButton4);
         jButton4.setBounds(10, 120, 220, 23);
-
-        jButton8.setText("Cerrar Sesión");
-        jButton8.setMaximumSize(new java.awt.Dimension(135, 23));
-        jButton8.setMinimumSize(new java.awt.Dimension(135, 23));
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton8);
-        jButton8.setBounds(10, 390, 120, 23);
 
         jButton9.setText("Registro de Categoría de Entes");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -148,8 +150,48 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jPanel1.add(jButton14);
         jButton14.setBounds(10, 240, 220, 23);
 
+        jButton11.setText("Reportar usuario");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton11);
+        jButton11.setBounds(10, 270, 220, 23);
+
+        jButton15.setText("Ver ente");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton15);
+        jButton15.setBounds(10, 300, 220, 23);
+
+        jButton17.setText("Ver todas las Personas");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton17);
+        jButton17.setBounds(10, 330, 220, 23);
+
+        jButton18.setText("Ver Persona*");
+        jPanel1.add(jButton18);
+        jButton18.setBounds(10, 360, 220, 23);
+
+        jButton19.setText("Ver todos los entes");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton19);
+        jButton19.setBounds(10, 390, 220, 23);
+
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(20, 20, 280, 420);
+        jPanel1.setBounds(20, 20, 280, 480);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Administrador"));
         jPanel2.setLayout(null);
@@ -190,8 +232,28 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jPanel2.add(jButton12);
         jButton12.setBounds(10, 120, 220, 23);
 
+        jButton16.setText("Introducir lugar laboral*");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton16);
+        jButton16.setBounds(10, 150, 220, 23);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(320, 20, 280, 420);
+
+        jButton8.setText("Cerrar Sesión");
+        jButton8.setMaximumSize(new java.awt.Dimension(135, 23));
+        jButton8.setMinimumSize(new java.awt.Dimension(135, 23));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton8);
+        jButton8.setBounds(640, 520, 120, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,7 +285,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          java.awt.EventQueue.invokeLater(new Runnable() {
          public void run() {
-         new Visualizar_Denuncias().setVisible(true);
+         new Visualizar_Denuncias(rol).setVisible(true);
             }
         });
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -289,9 +351,14 @@ public class PaginaPrincipal extends javax.swing.JFrame
         if(registro_Denuncia_Ente!=null)registro_Denuncia_Ente.dispose();
         if(registrar_Categoria!=null)registrar_Categoria.dispose();
         if(borrar_Denuncia!=null)borrar_Denuncia.dispose();
+        if(registrarCategoriaEmpresa!=null)registrarCategoriaEmpresa.dispose();
         if(registrar_Entidad!=null)registrar_Entidad.dispose();
         if(registrar_Persona!=null)registrar_Persona.dispose();
         if(contrato!=null)contrato.dispose();
+        if(reportar_Usuario!=null)reportar_Usuario.dispose();
+        if(visualizarEntes!=null)visualizarEntes.dispose();
+        
+        if(perfil!=null)perfil.dispose();
         
         Login login = new Login();
         login.show();      // muestra la ventana de Login
@@ -299,11 +366,15 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarCategoriaEmpresa().setVisible(true);
-            }
-        });
+        if(registrarCategoriaEmpresa == null)  // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
+        {
+            registrarCategoriaEmpresa=new RegistrarCategoriaEmpresa();
+            registrarCategoriaEmpresa.setVisible(true);
+        }
+        else
+        {
+            registrarCategoriaEmpresa.show();
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -319,13 +390,23 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-            // Parametrizacion de cantidad de reportes para bloqueos
+        try
+        {
+            int cantidad= Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de reportes que debe cumplir un usuario para ser bloqueado"));
+            conexion.preparardb();
+            conexion.setCantidadDenunciasBloqueo(cantidad);
+            conexion.destruir();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "El parametro introducido no es correcto");
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         if(perfil == null)       // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
         {
-            perfil=new home(this.usuario);
+            perfil=new Home(this.usuario);
             perfil.setVisible(true);
         }
         else
@@ -334,12 +415,73 @@ public class PaginaPrincipal extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        if(reportar_Usuario == null)       // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
+        {
+            reportar_Usuario=new reportar_Usuario(this.usuario);
+            reportar_Usuario.setVisible(true);
+        }
+        else
+        {
+            reportar_Usuario.show();
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        if(visualizarEntes == null)       // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
+        {
+            visualizarEntes=new VisualizarEntes();
+            visualizarEntes.setVisible(true);
+        }
+        else
+        {
+            visualizarEntes.show();
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        try
+        {
+            String lugar= JOptionPane.showInputDialog("Digite el nuevo lugar de trabajo");
+            conexion.preparardb();
+            conexion.introducirLugarTrabajo(lugar);
+            conexion.destruir();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "El parametro introducido no es correcto");
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BuscarPersona().setVisible(true);
+            }
+        });        
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BuscarEnte().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton19ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

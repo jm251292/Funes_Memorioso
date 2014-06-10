@@ -4,11 +4,9 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `getAllDenuncias` (in rol varchar(45))
+CREATE PROCEDURE `get_reporte` (IN usu VARCHAR(45))
 BEGIN
-	if (rol="Usuario") then
-		select Denuncia,nombrdenuncia from Denuncia where activado=1 and privacidad="Público";
-	ELSE
-		select Denuncia,nombrdenuncia from Denuncia where activado=1;
-	end if;
+declare idusu int;
+select usuario into idusu from usuario where usu = nick;
+select razon from reporte r inner join historial h on h.reporte_idreporte=r.idreporte WHERE idusu=usuario_usuario; 
 END;

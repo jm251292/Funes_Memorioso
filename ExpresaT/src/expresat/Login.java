@@ -96,6 +96,7 @@ public class Login extends javax.swing.JFrame
         {
             PaginaPrincipal pagina=new PaginaPrincipal(this.jTextField1.getText(),this.jRadioButton1.isSelected()?this.jRadioButton1.getText():this.jRadioButton2.getText());       // redirecciona a la ventana de Control una vez que el usuario se logueo satisfactoriamente
             pagina.show();      // muestra la ventana principal
+            conexion.destruir();
             this.dispose();     // libera esta ventana de memoria
         }
         else

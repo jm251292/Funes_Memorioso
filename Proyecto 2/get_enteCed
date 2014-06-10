@@ -4,7 +4,6 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `get_enteCed` (IN ced VARCHAR(45))
+CREATE PROCEDURE `get_enteCed` ()
 BEGIN
-select nombre, cedula from ente 
-	WHERE Cedula = ced order by nombre; END;
+select nombre, cedulajur from ente order by cedula; END;

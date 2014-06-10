@@ -4,7 +4,6 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `get_enteNom` (IN nom VARCHAR(45))
+CREATE PROCEDURE `get_enteNom` ()
 BEGIN
-select * from ente 
-	WHERE Nombre = nom order by nombre; END;
+select * from ente order by nombre; END;

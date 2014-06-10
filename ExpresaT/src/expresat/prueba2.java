@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 public class prueba2 
 {
-    String persona= "eee_rrrr_iii";
+    Conexion c;
+    ArrayList<String> a;
     
     public prueba2() 
     {
-        String cedula= persona.split("_")[persona.split("_").length-1];
-        System.out.println(cedula);
+        c= new Conexion();
+        a= new ArrayList();
+        a=c.getreportes("admin");
+        System.out.println(a);
     }   
 }
