@@ -4,9 +4,9 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `getCalificacionEntes` (in nom varchar(45))
+CREATE PROCEDURE `getRolSocial` (IN ced VARCHAR(45))
 BEGIN
-	declare idE int;
-	select idente into idE from ente where Nombre = nom;
-	select calificacion from denunciaxente where ente_idente= idE;
+	declare idper int;
+	select idpersona into idper from persona where cedula = ced;
+	select tp.nombre from tipopersona tp inner join tipoxpersona tpp on tpp.TipoPersona_idTipoPersona=tp.idtipopersona WHERE idper=tpp.persona_idpersona; 
 END

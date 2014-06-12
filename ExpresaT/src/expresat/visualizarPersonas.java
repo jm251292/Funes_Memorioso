@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-public class VisualizarEntes extends javax.swing.JFrame 
+public class visualizarPersonas extends javax.swing.JFrame 
 {
     Conexion conexion;
     JPanel info;
@@ -16,13 +16,14 @@ public class VisualizarEntes extends javax.swing.JFrame
     JLabel letrero1, letrero2, letrero3, letrero4, letrero5, letrero6, letrero7, letrero8, letrero9, letrero10, ratingGeneral;
     ArrayList<String> listaVotaciones;       //votos son cuanta cantidad de votos hay de n estrellas igual a la posicion en el array, mientras que lista de votaciones son los votos totales
     ArrayList<Integer> votos;
-    public VisualizarEntes() 
+    
+    public visualizarPersonas() 
     {
-        initComponents();                       // inicia componentes gráficos
+        initComponents();
         construcciones();                       // método que construye los objetos
         add(info);                              // añade panel artificial que se activa por mouse
         info.setVisible(false);                 // lo hace invisible porque no ha pasado el mouse por encima del label
-        llenarComboBoxEntes();                  // llena el combo box con los entes para escoger
+        llenarComboBoxPersonas();                  // llena el combo box con los entes para escoger
         this.setSize(1000, 600);                // asigna tamaño a la ventana
     }
 
@@ -35,11 +36,6 @@ public class VisualizarEntes extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -48,7 +44,7 @@ public class VisualizarEntes extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Ente a consultar:");
+        jLabel1.setText("Persona a consultar:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(60, 20, 100, 14);
 
@@ -60,69 +56,28 @@ public class VisualizarEntes extends javax.swing.JFrame
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(170, 20, 210, 20);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dirección"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Información"));
+        jPanel1.setLayout(null);
 
-        jLabel3.setText("Pais:");
+        jLabel3.setText("Lugar de trabajo:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(16, 27, 338, 14);
 
-        jLabel4.setText("Provincia:");
-
-        jLabel5.setText("Canton:");
-
-        jLabel6.setText("Distrito:");
-
-        jLabel7.setText("Barrio:");
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(227, 227, 227));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Dir. general:");
-        jScrollPane1.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel4.setText("Roles sociales:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(16, 47, 338, 14);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(30, 70, 370, 240);
+        jPanel1.setBounds(30, 70, 370, 120);
+        jPanel1.getAccessibleContext().setAccessibleName("Direccion");
 
-        jLabel2.setText("Ente");
+        jLabel2.setText("Persona");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                MuestraRating(evt);
+                jLabel2MuestraRating(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                DesapareceRating(evt);
+                jLabel2DesapareceRating(evt);
             }
         });
         getContentPane().add(jLabel2);
@@ -148,30 +103,29 @@ public class VisualizarEntes extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MuestraRating(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MuestraRating
-        info.setBounds(420, 90, 500, 500);              // handler que se actuva cuando el mouse pasa por encima del nombre
-        info.setVisible(true);                          // lo muestra
-    }//GEN-LAST:event_MuestraRating
-
-    private void DesapareceRating(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DesapareceRating
-        info.setVisible(false);                         // desaparece el panel artificial
-    }//GEN-LAST:event_DesapareceRating
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         getCalculoVotaciones();                         // calcula las votaciones
         jLabel2.setText(String.valueOf(jComboBox1.getSelectedItem()));
+        String infopersona=String.valueOf(jComboBox1.getSelectedItem());
+        String [] cedula;
+        cedula = infopersona.split("_");
         conexion.preparardb();
-        jTextArea1.setText("Dirección general: "+conexion.devolverDireccion(String.valueOf(jComboBox1.getSelectedItem())));         // saca la dirección general de la institución seleccionada
-        jLabel3.setText("País: "+conexion.devolverPais(String.valueOf(jComboBox1.getSelectedItem())));
-        jLabel4.setText("Provincia: "+conexion.devolverProvincia(String.valueOf(jComboBox1.getSelectedItem())));
-        jLabel5.setText("Canton: "+conexion.devolverCanton(String.valueOf(jComboBox1.getSelectedItem())));
-        jLabel6.setText("Distrito: "+conexion.devolverDistrito(String.valueOf(jComboBox1.getSelectedItem())));
-        jLabel7.setText("Barrio: "+conexion.devolverBarrio(String.valueOf(jComboBox1.getSelectedItem())));
+        jLabel3.setText("Lugar de trabajo: "+conexion.devolverLugarTrabajo(cedula[2]));
+        jLabel4.setText("Roles sociales: "+conexion.devolverRolesSociales(cedula[2]));
         conexion.destruir();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jLabel2MuestraRating(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MuestraRating
+        info.setBounds(420, 90, 500, 500);              // handler que se actuva cuando el mouse pasa por encima del nombre
+        info.setVisible(true);                          // lo muestra
+    }//GEN-LAST:event_jLabel2MuestraRating
+
+    private void jLabel2DesapareceRating(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2DesapareceRating
+        info.setVisible(false);                         // desaparece el panel artificial
+    }//GEN-LAST:event_jLabel2DesapareceRating
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+            this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -181,21 +135,16 @@ public class VisualizarEntes extends javax.swing.JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-
-    private void llenarComboBoxEntes()       // método que accede a la base de datos para rellenar con personas registradas y que no han sido relacionadas a una cuenta
+    
+    private void llenarComboBoxPersonas()       // método que accede a la base de datos para rellenar con personas registradas y que no han sido relacionadas a una cuenta
     {
         ArrayList<String> lista= new ArrayList();       // lista con los nombres para añadir al comboBox
         conexion.preparardb();
-        lista= conexion.devolverListaEntesSinCedulaJuridica();           // llena el combo box
+        lista= conexion.devolverListaPersonas();           // llena el combo box
         
         for (int i = 0; i < lista.size(); i++)          // ciclo que agraga uno a uno a las personas
         {
@@ -293,8 +242,11 @@ public class VisualizarEntes extends javax.swing.JFrame
     {
         promedio=0;                                 // reinicia los valores para no hacer informacion errónea
         conexion.preparardb();
-        listaVotaciones= conexion.calificacionesEnte(String.valueOf(jComboBox1.getSelectedItem())); // obtiene calificaciones según lo seleccionado en el combobox
-        conexion.destruir();
+        String infopersona=String.valueOf(jComboBox1.getSelectedItem());
+        String [] cedula;
+        cedula = infopersona.split("_");
+        listaVotaciones= conexion.calificacionesPersona(cedula[2]); // obtiene calificaciones según lo seleccionado en el combobox
+        conexion.destruir(); 
         votos.set(0, 0);                            // reinicia los valores para no hacer informacion errónea
         votos.set(1, 0);
         votos.set(2, 0);
@@ -317,7 +269,6 @@ public class VisualizarEntes extends javax.swing.JFrame
         for (int i = 0; i < listaVotaciones.size(); i++) 
         {
         }
-        
         
         for (int i = 0; i < votos.size(); i++)              // ciclo que captura la calificacion mas usada
         {

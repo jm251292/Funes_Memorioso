@@ -1,0 +1,14 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `getAllDenuncias` (in rol varchar(45))
+BEGIN
+	if (rol="Usuario") then
+		select d.Denuncia,d.nombrdenuncia,u.nick from Denuncia d inner join usuarioxdenuncia ud inner join usuario u on d.iddenuncia=ud.Denuncia_idDenuncia and ud.usuario_usuario=u.usuario where activado=1 and privacidad="Público";
+	ELSE
+		select d.Denuncia,d.nombrdenuncia,u.nick from Denuncia d inner join usuarioxdenuncia ud inner join usuario u on d.iddenuncia=ud.Denuncia_idDenuncia and ud.usuario_usuario=u.usuario where activado=1;
+	end if;
+END;

@@ -4,11 +4,10 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `getAllDenuncias` (in rol varchar(45))
+CREATE PROCEDURE `getCalificacionEntes` (in nom varchar(45))
 BEGIN
-	if (rol="Usuario") then
-		select Denuncia,nombrdenuncia from Denuncia where activado=1 and privacidad="Público";
-	ELSE
-		select Denuncia,nombrdenuncia from Denuncia where activado=1;
-	end if;
+	declare idE int;
+	select idente into idE from ente where Nombre = nom;
+	select calificacion from denunciaxente DE inner join denuncia D on DE.denuncia_iddenuncia = D.iddenuncia
+	where DE.ente_idente= idE and D.activado = 1;
 END;

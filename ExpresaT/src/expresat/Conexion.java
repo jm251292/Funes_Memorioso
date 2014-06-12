@@ -9,8 +9,8 @@ import javax.swing.table.TableModel;
 // Clase conexion - Se encargara de realizar la conexion con la base de datos de mySQL
 public class Conexion 
 {
-    private Connection conexion;
-    static String bd="ExpresaT";
+    private Connection conexion;            // capa de negocio con la base de datos
+    static String bd="ExpresaT";            // toda la información para conectar con la misma
     static String user="root";
     static String password="root";
     Statement stmt = null;
@@ -112,7 +112,7 @@ public class Conexion
             catch(Exception e){}
         }
     }
-
+    // Funcion que cierra el querry de sql que se utilizo
     public void destruir()
     {
         if(conexion !=null){
@@ -408,7 +408,7 @@ public class Conexion
          
         return lista;
     }
-    
+    // devuelve la lista de los entes aunque no tengan cédula jurídica
     public ArrayList<String> devolverListaEntesSinCedulaJuridica()
     {        
         ArrayList<String> lista= new ArrayList();
@@ -473,7 +473,7 @@ public class Conexion
                
         return lista;
     }
-    
+    // devuelve la dirección de un ente
     public String devolverDireccion(String ente)
     {    
         String direccion="";
@@ -648,7 +648,6 @@ public class Conexion
     ArrayList<String> getreportes(String nick) 
     {
         ArrayList<String> lista= new ArrayList();
-        System.out.println(nick);
         
         try
         {
@@ -656,12 +655,12 @@ public class Conexion
             
             while(s.next())
             {
-                lista.add(s.getString("razon"));
+                lista.add(s.getString("razon")+"\n");
             }
         }
         catch(Exception e)
         {
-            System.out.println(e.getSuppressed());
+            System.out.println(e.getMessage());
         }
         
         return lista;
@@ -677,7 +676,7 @@ public class Conexion
             ResultSet r=stmt.executeQuery("call getallDenuncias('"+rol+"');");
             while(r.next())
             {
-                lista.add(r.getString("nombrdenuncia")+"_"+r.getString("denuncia"));
+                lista.add(r.getString("nombrdenuncia")+"_"+r.getString("denuncia")+"_"+r.getString("nick"));
             } 
         }
         catch(Exception e)
@@ -732,7 +731,7 @@ public class Conexion
                
         return lista;
     }
-
+    // devuelve el país de un ente
     String devolverPais(String ente) 
     {
         String pais="";
@@ -753,7 +752,7 @@ public class Conexion
                
         return pais;
     }
-
+    // devuelve la provincia de un ente
     String devolverProvincia(String ente) 
     {
         String provincia="";
@@ -774,7 +773,7 @@ public class Conexion
                
         return provincia;
     }
-
+// devuelve el cantón de un ente
     String devolverCanton(String ente) 
     {
         String canton="";
@@ -795,7 +794,7 @@ public class Conexion
                
         return canton;
     }
-
+// devuelve el distrito de un ente
     String devolverDistrito(String ente) 
     {
         String distrito="";
@@ -816,7 +815,7 @@ public class Conexion
                
         return distrito;
     }
-
+// devuelve el barrio de un ente
     String devolverBarrio(String ente) 
     {
         String barrio="";
@@ -837,7 +836,7 @@ public class Conexion
                
         return barrio;
     }
-
+// devuelve la cantidad necesaria de reportes para bloquear cuentas
     void setCantidadDenunciasBloqueo(int cantidad) 
     {
         try
@@ -849,11 +848,12 @@ public class Conexion
             System.out.println(e.getMessage());
         }
     }
-
-    void introducirLugarTrabajo(String lugar) {
+// inserta trabajo en una persona
+    void introducirLugarTrabajo(String lugar) 
+    {
         try
         {
-            ResultSet r=stmt.executeQuery("call InsertarLimiteReporte('"+lugar+"');"); // WTF??
+            ResultSet r=stmt.executeQuery("call InsertarLugarTrabajo('"+lugar+"');"); // WTF??
         }
         catch(Exception e)
         {
@@ -861,17 +861,24 @@ public class Conexion
         }
     }
     
-    // arreglo con todas las calificaciones de una Entidad, obtenidas por medio de su nombre.
-    ArrayList<String> devolverPersonasCed() 
+    //  arreglo con todos las personas existentes con la cédula especificada
+    ArrayList<String> devolverPersonasCed(String Ced) 
     {
         ArrayList<String> lista= new ArrayList();
         
         try
         {
-            ResultSet r=stmt.executeQuery("call get_personaCed();");
+            ResultSet r=stmt.executeQuery("call getpersonasced('"+Ced+"');");
             while(r.next())
             {
-                lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                if(!r.getString("Apellido2").equals(""))
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
+                else
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
             } 
         }
         catch(Exception e)
@@ -882,16 +889,24 @@ public class Conexion
                
         return lista;
     }
-
-    ArrayList<String> devolverPersonasNom() {
+    
+    // arreglo con todos las personas existentes con el nombre especificado
+    ArrayList<String> devolverPersonasNom(String Nom) {
         ArrayList<String> lista= new ArrayList();
         
         try
         {
-            ResultSet r=stmt.executeQuery("call get_personaNom();");
+            ResultSet r=stmt.executeQuery("call getpersonasNom('"+Nom+"');");
             while(r.next())
             {
-                lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                if(!r.getString("Apellido2").equals(""))
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
+                else
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
             } 
         }
         catch(Exception e)
@@ -903,15 +918,23 @@ public class Conexion
         return lista;
     }
 
-    ArrayList<String> devolverPersonasApe() {
+        //  arreglo con todos las personas existentes con el apellido especificado
+    ArrayList<String> devolverPersonasApe(String Ape) {
         ArrayList<String> lista= new ArrayList();
         
         try
         {
-            ResultSet r=stmt.executeQuery("call get_personaApe();");
+            ResultSet r=stmt.executeQuery("call getpersonasApe('"+Ape+"');");
             while(r.next())
             {
-                lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                if(!r.getString("Apellido2").equals(""))
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
+                else
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
             } 
         }
         catch(Exception e)
@@ -922,16 +945,46 @@ public class Conexion
                
         return lista;
     }
-
-    ArrayList<String> devolverEntesCed() {
+    
+//  arreglo con todos las personas existentes pertenecientes a la categoría especificada
+    ArrayList<String> devolverPersonasCat(String Cat) 
+    {
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call getpersonasCat('"+Cat+"');");
+            while(r.next())
+            {
+                if(!r.getString("Apellido2").equals(""))
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
+                else
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Nombre")+" "+r.getString("Cedula"));
+                }
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+    
+    // arreglo con todos los entes existentes pertenecientes con la cédula Jurídica especificada
+    ArrayList<String> devolverEntesCed(String Ced) {
          ArrayList<String> lista= new ArrayList();
         
         try
         {
-            ResultSet r=stmt.executeQuery("call get_enteCed();");
+            ResultSet r=stmt.executeQuery("call get_enteCed('"+Ced+"');");
             while(r.next())
             {
-                if(r.getString("CedulaJur")!=null)
+                if(!r.getString("cedulaJur").equals(""))
                 {
                     lista.add(r.getString("Nombre")+" "+r.getString("CedulaJur"));
                 }
@@ -951,21 +1004,183 @@ public class Conexion
         return lista;
     }
 
-    ArrayList<String> devolverEntesNom() {
+    // arreglo con todos los entes existentes cuyo nombre coincide con el dado
+    ArrayList<String> devolverEntesNom(String Nom) 
+    {
          ArrayList<String> lista= new ArrayList();
         
         try
         {
-            ResultSet r=stmt.executeQuery("call get_EnteNom();");
+            ResultSet r=stmt.executeQuery("call get_EnteNom('"+Nom+"');");
             while(r.next())
             {
-                if(r.getString("CedulaJur")!=null)
+                if(!r.getString("cedulaJur").equals(""))
                 {
                     lista.add(r.getString("Nombre")+" "+r.getString("CedulaJur"));
                 }
                 else
                 {
                     lista.add(r.getString("Nombre"));
+                }
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+
+    // devuelve el trabajo de una persona por su cédula
+    String devolverLugarTrabajo(String cedula) 
+    {
+        String lista="";
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call getLugarTrabajo('"+cedula+"');");
+            while(r.next())
+            {
+                lista= lista+" "+r.getString("Nombre");
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+
+    // retorna los roles que podria desempeñar una persona en la sociedad actual.
+    String devolverRolesSociales(String cedula) 
+    {
+        String lista="";
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call getRolSocial('"+cedula+"');");
+            while(r.next())
+            {
+                lista= lista+" "+r.getString("Nombre");
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+
+    // retorna los lugares donde una persona podria trabajar, que se encuentren actualmente en la base de datos
+    ArrayList<String> devolverLugaresTrabajo() 
+    {
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call get_lugaresdetrabajo();");
+            while(r.next())
+            {
+                lista.add(r.getString("Nombre"));
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+
+    // retorna todas las categorías para Entidades, existentes actualmente en la base de datos
+    ArrayList<String> devolverCatEntes() {
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call getCategoriaGEN();");
+            while(r.next())
+            {
+                lista.add(r.getString("Nombre"));
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+    
+    // retorna todas las categorías para personas, existentes actualmente en la base de datos
+        ArrayList<String> devolverCatPersona() {
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call get_TipoPersonaGEN();");
+            while(r.next())
+            {
+                lista.add(r.getString("Nombre"));
+            } 
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            return null;
+        }
+               
+        return lista;
+    }
+// actualiza una persona que esta asociada al usuario que está ya logueado
+    boolean actualizarPersona(String nuevoNombre, String nuevoApellido1, String nuevoApellido2, String nuevoGenero, String nuevoRol, String nuevoTrabajo, String rolEliminado, String trabajoEliminado, String nick) 
+    {
+        try
+        {
+            ResultSet r=stmt.executeQuery("call actualizarPersona('"+nuevoNombre+"','"+nuevoApellido1+"','"+nuevoApellido2+"','"+nuevoGenero+"','"+nick+"');");
+            
+            if (!nuevoRol.equals("No añadir")) 
+                r=stmt.executeQuery("call anadirrol('"+nuevoRol+"','"+nick+"');");
+            if (!rolEliminado.equals("No eliminar")) 
+                r=stmt.executeQuery("call quitarrol('"+rolEliminado+"','"+nick+"');");
+            if (!nuevoTrabajo.equals("No añadir")) 
+                r=stmt.executeQuery("call anadirtrabajo('"+nuevoTrabajo+"','"+nick+"');");
+            if (!trabajoEliminado.equals("No eliminar")) 
+                r=stmt.executeQuery("call quitartrabajo('"+trabajoEliminado+"','"+nick+"');");
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+    // devuelve todas las personas
+    ArrayList<String> devolverPersonas() 
+    {
+        ArrayList<String> lista= new ArrayList();
+        
+        try
+        {
+            ResultSet r=stmt.executeQuery("call retornarPersonasGEN();");
+            while(r.next())
+            {
+                if(!r.getString("Apellido2").equals(""))
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Apellido2")+" "+r.getString("Nombre")+" "+r.getString("Cedula")+" "+r.getString("Genero"));
+                }
+                else
+                {
+                    lista.add(r.getString("Apellido1")+" "+r.getString("Nombre")+" "+r.getString("Cedula")+" "+r.getString("Genero"));
                 }
             } 
         }

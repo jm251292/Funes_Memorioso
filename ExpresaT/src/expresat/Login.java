@@ -82,9 +82,9 @@ public class Login extends javax.swing.JFrame
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("¡ERROR! ...   contraseña, usuario o rol inconsistentes");
+        jLabel3.setText("¡ERROR! ...   contraseña, usuario o rol inconsistentes, o esta bloqueada la cuenta");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(80, 130, 370, 14);
+        jLabel3.setBounds(10, 130, 480, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

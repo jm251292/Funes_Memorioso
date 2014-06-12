@@ -17,6 +17,9 @@ public class Registro_Denuncia_Persona extends javax.swing.JFrame
         initComponents();
         conexion = new Conexion();
         llenarComboBoxPersonas();
+        this.jTextArea1.setText("");
+        this.jTextArea3.setText("");
+        this.jTextField1.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -170,6 +173,9 @@ public class Registro_Denuncia_Persona extends javax.swing.JFrame
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.jTextArea1.setText("");
+        this.jTextArea3.setText("");
+        this.jTextField1.setText("");
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 

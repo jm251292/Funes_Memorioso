@@ -273,11 +273,11 @@ public class Registrar_Persona extends javax.swing.JFrame
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTextField1.setText(null);
-        jTextField2.setText(null);
-        jTextField3.setText(null);
-        jTextField4.setText(null);
-        jTextField5.setText(null);
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
         jLabel6.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -328,7 +328,7 @@ public class Registrar_Persona extends javax.swing.JFrame
         
         ArrayList<String> lista= new ArrayList();       // lista con los nombres para añadir al comboBox
         conexion.preparardb();
-        lista= conexion.devolverListaEntes();
+        lista= conexion.devolverLugaresTrabajo();
         
         for (int i = 0; i < lista.size(); i++)          // ciclo que agraga uno a uno a las personas
         {

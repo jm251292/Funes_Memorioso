@@ -1,0 +1,29 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `quitarrol` (in rol varchar(60), in user varchar(300))
+BEGIN
+	declare idusu int;
+	declare idper int;
+	declare idrol int;
+	DECLARE error INTEGER DEFAULT 0;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SET error=1;
+	END;
+	
+	select usuario into idusu from usuario where nick=user;
+	select idtipopersona into idrol from tipopersona where nombre=rol;
+	select idpersona into idper from usuarioxpersona up inner join persona p on p.idpersona=up.persona_idpersona where up.usuario_usuario=idusu;
+	
+	delete from tipoxpersona where persona_idpersona=idper and tipopersona_idtipopersona= idrol;
+	
+	IF error=1 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	END IF;
+END

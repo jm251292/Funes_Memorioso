@@ -13,9 +13,11 @@ public class PaginaPrincipal extends javax.swing.JFrame
     VisualizarEntes visualizarEntes;
     Registrar_Categoria registrar_Categoria;
     Borrar_Denuncia borrar_Denuncia;
+    Visualizar_Denuncias visualizar_Denuncias;
     Registrar_Entidad registrar_Entidad;
     RegistrarCategoriaEmpresa registrarCategoriaEmpresa;
     Home perfil;
+    visualizarPersonas visualizarPersonas; 
     Registrar_Persona registrar_Persona;
     Contrato contrato;
     Conexion conexion;
@@ -62,18 +64,17 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jButton9 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,7 +93,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 30, 220, 23);
 
-        jButton2.setText("Ver denuncias*");
+        jButton2.setText("Ver denuncias");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -146,10 +147,6 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jPanel1.add(jButton10);
         jButton10.setBounds(10, 210, 220, 23);
 
-        jButton14.setText("Borrar calificacion");
-        jPanel1.add(jButton14);
-        jButton14.setBounds(10, 240, 220, 23);
-
         jButton11.setText("Reportar usuario");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +154,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel1.add(jButton11);
-        jButton11.setBounds(10, 270, 220, 23);
+        jButton11.setBounds(10, 240, 220, 23);
 
         jButton15.setText("Ver ente");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +163,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel1.add(jButton15);
-        jButton15.setBounds(10, 300, 220, 23);
+        jButton15.setBounds(10, 270, 220, 23);
 
         jButton17.setText("Ver todas las Personas");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -175,11 +172,16 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel1.add(jButton17);
-        jButton17.setBounds(10, 330, 220, 23);
+        jButton17.setBounds(10, 300, 220, 23);
 
-        jButton18.setText("Ver Persona*");
+        jButton18.setText("Ver Persona");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton18);
-        jButton18.setBounds(10, 360, 220, 23);
+        jButton18.setBounds(10, 330, 220, 23);
 
         jButton19.setText("Ver todos los entes");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +190,16 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         jPanel1.add(jButton19);
-        jButton19.setBounds(10, 390, 220, 23);
+        jButton19.setBounds(10, 360, 220, 23);
+
+        jButton16.setText("Introducir lugar laboral");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton16);
+        jButton16.setBounds(10, 390, 220, 23);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 20, 280, 480);
@@ -232,15 +243,6 @@ public class PaginaPrincipal extends javax.swing.JFrame
         jPanel2.add(jButton12);
         jButton12.setBounds(10, 120, 220, 23);
 
-        jButton16.setText("Introducir lugar laboral*");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton16);
-        jButton16.setBounds(10, 150, 220, 23);
-
         getContentPane().add(jPanel2);
         jPanel2.setBounds(320, 20, 280, 420);
 
@@ -253,7 +255,7 @@ public class PaginaPrincipal extends javax.swing.JFrame
             }
         });
         getContentPane().add(jButton8);
-        jButton8.setBounds(640, 520, 120, 23);
+        jButton8.setBounds(620, 510, 120, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -283,11 +285,15 @@ public class PaginaPrincipal extends javax.swing.JFrame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-         new Visualizar_Denuncias(rol).setVisible(true);
-            }
-        });
+        if(visualizar_Denuncias == null)  // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
+        {
+            visualizar_Denuncias=new Visualizar_Denuncias(usuario);
+            visualizar_Denuncias.setVisible(true);
+        }
+        else
+        {
+            visualizar_Denuncias.show();
+        }        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -351,14 +357,16 @@ public class PaginaPrincipal extends javax.swing.JFrame
         if(registro_Denuncia_Ente!=null)registro_Denuncia_Ente.dispose();
         if(registrar_Categoria!=null)registrar_Categoria.dispose();
         if(borrar_Denuncia!=null)borrar_Denuncia.dispose();
+        if(visualizar_Denuncias!=null)visualizar_Denuncias.dispose();
         if(registrarCategoriaEmpresa!=null)registrarCategoriaEmpresa.dispose();
         if(registrar_Entidad!=null)registrar_Entidad.dispose();
         if(registrar_Persona!=null)registrar_Persona.dispose();
         if(contrato!=null)contrato.dispose();
         if(reportar_Usuario!=null)reportar_Usuario.dispose();
         if(visualizarEntes!=null)visualizarEntes.dispose();
-        
+        if(visualizarPersonas!=null)visualizarPersonas.dispose();
         if(perfil!=null)perfil.dispose();
+        
         
         Login login = new Login();
         login.show();      // muestra la ventana de Login
@@ -470,13 +478,24 @@ public class PaginaPrincipal extends javax.swing.JFrame
         });
     }//GEN-LAST:event_jButton19ActionPerformed
 
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        if(visualizarPersonas == null)       // si no se ha creado una ventana, entonces la crea si no muestra la que ya se instanció
+        {
+            visualizarPersonas=new visualizarPersonas();
+            visualizarPersonas.setVisible(true);
+        }
+        else
+        {
+            visualizarPersonas.show();
+        }
+    }//GEN-LAST:event_jButton18ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;

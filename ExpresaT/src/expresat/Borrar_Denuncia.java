@@ -5,16 +5,17 @@ import javax.swing.JOptionPane;
 
 public class Borrar_Denuncia extends javax.swing.JFrame 
 {
-    Conexion conexion;
+    Conexion conexion;                  // clase q permite borrar denuncia
     String usuario;
     ArrayList<String> lista;
     
-    public Borrar_Denuncia(String usuario) 
+    public Borrar_Denuncia(String usuario)  // necesita el usuario para especificar que sólo puede borrar las denuncias hechas por él
     {
         initComponents();
         conexion= new Conexion();
         this.usuario=usuario;
-        llenarCombobox();
+        llenarCombobox();                   // llena el combobox con denuncias
+        this.jTextArea1.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +30,9 @@ public class Borrar_Denuncia extends javax.swing.JFrame
         jTextArea1 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 500, 250));
+        setMinimumSize(new java.awt.Dimension(500, 250));
         getContentPane().setLayout(null);
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,38 +85,39 @@ public class Borrar_Denuncia extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.jTextArea1.setText("");        // boton de cancelar
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        String texto;
+        String texto;       // al activar el combobox debe mostrar el contenido de la denuncia seleccionada
         
         for (int i = 0; i < lista.size(); i++) 
         {
-            if(lista.get(i).split("_")[0].equals(String.valueOf(jComboBox1.getSelectedItem())))
+            if(lista.get(i).split("_")[0].equals(String.valueOf(jComboBox1.getSelectedItem()))) // busca en la información recompilada la denuncia correspondiente
             {
-                jTextArea1.setText(lista.get(i).split("_")[1]);
+                jTextArea1.setText(lista.get(i).split("_")[1]);     //  en la posicion 1 de cada subelemento i, esta el contenido de la denuncia, en la 0 esta el nombre de la misma
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (!String.valueOf(jComboBox1.getSelectedItem()).equals(""))
+        if (!String.valueOf(jComboBox1.getSelectedItem()).equals(""))       // borra la denuncia seleccionada
         {
             conexion.preparardb();
-            conexion.desactivardenuncia(String.valueOf(jComboBox1.getSelectedItem()));
+            conexion.desactivardenuncia(String.valueOf(jComboBox1.getSelectedItem()));// en realidad solo la desactiva
             jComboBox1.removeAllItems();
-            llenarCombobox();
+            llenarCombobox();                                               // vuele a llenar el combobox sin el elemento recién removido
             JOptionPane.showMessageDialog(rootPane, "Eliminado correctamente");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (!String.valueOf(jComboBox1.getSelectedItem()).equals(""))
+        if (!String.valueOf(jComboBox1.getSelectedItem()).equals(""))   // actualiza denuncia
         {
             conexion.preparardb();
             conexion.actualizarDenuncia(String.valueOf(jComboBox1.getSelectedItem()), jTextArea1.getText());
-            llenarCombobox();
+            llenarCombobox();                                           // vuele a llenar el combobox con el elemento recién actualizado
             JOptionPane.showMessageDialog(rootPane, "Actualizado correctamente");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -134,7 +138,7 @@ public class Borrar_Denuncia extends javax.swing.JFrame
         conexion.preparardb();
         lista= conexion.devolverListaDenuncias(usuario);
         
-        for (int i = 0; i < lista.size(); i++)          // ciclo que agraga uno a uno a las personas
+        for (int i = 0; i < lista.size(); i++)          // ciclo que agrega uno a uno a las personas
         {
             this.jComboBox1.addItem(lista.get(i).split("_")[0]);
         }

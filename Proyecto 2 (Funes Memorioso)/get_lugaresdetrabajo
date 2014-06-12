@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE PROCEDURE `login` (in nic varchar(100), in pass varchar(100), in roll varchar(100))
+CREATE PROCEDURE `get_lugaresdetrabajo` ()
 BEGIN
-	select count(*) from usuario where nick = nic and contraseña = md5(pass) and rol = roll and bloqueado = false;
+	select nombre from lugartrabajo ;
 END

@@ -1,0 +1,26 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `actualizarPersona` (in nom varchar(45), in ape1 varchar(300), in ape2 varchar(300), in gen varchar(300), in user varchar(300))
+BEGIN
+	declare idusu int;
+	declare ced varchar(45);
+	DECLARE error INTEGER DEFAULT 0;
+	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	BEGIN
+		SET error=1;
+	END;
+	
+	select usuario into idusu from usuario where nick=user;
+	select cedula into ced from usuarioxpersona up inner join persona p on p.idpersona=up.persona_idpersona where up.usuario_usuario=idusu;
+	update Persona set nombre=nom,apellido1=ape1, apellido2=ape2, genero=gen where cedula=ced;
+	
+	IF error=1 THEN
+		ROLLBACK;
+	ELSE
+		COMMIT;
+	END IF;
+END

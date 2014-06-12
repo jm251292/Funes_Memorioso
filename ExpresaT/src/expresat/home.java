@@ -17,6 +17,10 @@ public class Home extends javax.swing.JFrame
         jLabel4.setVisible(false);
         getReportes(nick);
         this.setSize(800, 600);
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jTextField3.setText("");
+        this.jTextField4.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -32,8 +36,6 @@ public class Home extends javax.swing.JFrame
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -49,8 +51,12 @@ public class Home extends javax.swing.JFrame
         jComboBox3 = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jButton1.setText("Actualizar perfil");
@@ -93,22 +99,6 @@ public class Home extends javax.swing.JFrame
         });
         getContentPane().add(jButton2);
         jButton2.setBounds(390, 60, 140, 23);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(jPanel1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 140, 500, 120);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(620, 40, 150, 30);
         getContentPane().add(jTextField3);
@@ -149,8 +139,9 @@ public class Home extends javax.swing.JFrame
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(560, 340, 210, 23);
+        jButton3.setBounds(560, 370, 210, 23);
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No añadir" }));
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(560, 190, 210, 20);
 
@@ -162,6 +153,7 @@ public class Home extends javax.swing.JFrame
         getContentPane().add(jLabel10);
         jLabel10.setBounds(560, 220, 200, 20);
 
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No eliminar" }));
         getContentPane().add(jComboBox3);
         jComboBox3.setBounds(560, 240, 210, 20);
 
@@ -169,9 +161,25 @@ public class Home extends javax.swing.JFrame
         getContentPane().add(jLabel11);
         jLabel11.setBounds(560, 270, 200, 14);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No añadir" }));
         getContentPane().add(jComboBox4);
         jComboBox4.setBounds(560, 290, 210, 20);
+
+        jLabel12.setText("Eliminar lugar de trabajo:");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(560, 320, 150, 14);
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No eliminar" }));
+        getContentPane().add(jComboBox5);
+        jComboBox5.setBounds(560, 340, 210, 20);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(40, 150, 460, 190);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,6 +227,10 @@ public class Home extends javax.swing.JFrame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.jTextField1.setText("");
+        this.jTextField2.setText("");
+        this.jTextField3.setText("");
+        this.jTextField4.setText("");
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -227,39 +239,27 @@ public class Home extends javax.swing.JFrame
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String nuevoNombre, nuevoApellido1, nuevoApellido2, nuevoGenero;
+        String nuevoNombre, nuevoApellido1, nuevoApellido2, nuevoGenero, nuevoRol, rolEliminado,nuevoTrabajo, trabajoEliminado;
         
-        if(!this.jPasswordField1.getText().equals("") && !this.jTextField1.getText().equals("") && !this.jPasswordField2.getText().equals(""))      // verifica que no falte ningún campo por rellenar
+        if(!this.jTextField2.getText().equals("") && !this.jTextField3.getText().equals("") && !this.jTextField4.getText().equals(""))      // verifica que no falte ningún campo por rellenar
         {
-            if(this.jPasswordField1.getText().equals(this.jPasswordField2.getText()))   // verifica que la contraseña esta repetida correctamente para términos de seguridad
-            {
                 conexion.preparardb();
-                if(conexion.VerificarUsuario(jTextField1.getText()))
+                
+                conexion.destruir();
+                nuevoNombre=this.jTextField2.getText();        // obtiene el nombre para actualizar
+                nuevoApellido1=this.jTextField3.getText();    // obtiene el primer apellido para actualizar
+                nuevoApellido2=this.jTextField3.getText();    // obtiene el segundo apellido para actualizar
+                nuevoGenero=String.valueOf(jComboBox1.getSelectedItem());    // obtiene el genero para actualizar
+                nuevoRol=String.valueOf(jComboBox2.getSelectedItem());    // obtiene el genero para actualizar
+                nuevoTrabajo=String.valueOf(jComboBox3.getSelectedItem());    // obtiene el genero para actualizar
+                rolEliminado=String.valueOf(jComboBox4.getSelectedItem());    // obtiene el genero para actualizar
+                trabajoEliminado=String.valueOf(jComboBox5.getSelectedItem());    // obtiene el genero para actualizar
+                
+                if (conexion.actualizarPersona(nuevoNombre, nuevoApellido1, nuevoApellido2, nuevoGenero, nuevoRol,nuevoTrabajo,rolEliminado,trabajoEliminado, viejoNick ))
                 {
-                    conexion.destruir();
-                    nuevoNick=this.jTextField1.getText();        // obtiene el nick del nuevo usuario de los campos de texto
-                    pass=this.jPasswordField1.getText();    // obtiene la contraseña del nuevo usuario de los campos de texto
-                    
-                    if (conexion.actualizarUsuario(nuevoNick, pass, viejoNick))
-                    {
-                        JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente"); // Parece haber problemas aqui ID no puede ser null xq en la tabla cartesiana hay problemas
-                        this.dispose();
-                    }
+                    JOptionPane.showMessageDialog(null, "Información personal actualizada correctamente"); // Parece haber problemas aqui ID no puede ser null xq en la tabla cartesiana hay problemas
+                    this.dispose();
                 }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "El nick deseado ya existe por favor modifiquelo");
-                    conexion.destruir();
-                    jTextField1.setText("");
-                }
-            }
-            else
-            {
-                this.jLabel4.setText("Las contraseñas no coinciden");       // en caso de que las contraseñas no coincidan, manda el error correspondiente
-                this.jLabel4.setVisible(true);
-                this.jPasswordField1.setText("");       // borra los campos de contraseña para que vuelva a intentar
-                this.jPasswordField2.setText("");
-            }
         }
         else        // si falto campos de texto por rellenar aqui se pone el error
         {
@@ -276,9 +276,11 @@ public class Home extends javax.swing.JFrame
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -287,10 +289,10 @@ public class Home extends javax.swing.JFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -302,13 +304,11 @@ public class Home extends javax.swing.JFrame
         ArrayList<String> lista= new ArrayList();
         conexion.preparardb();
         lista= conexion.getreportes(nick);
-        JTextArea reporte;
         
         for (int i = 0; i < lista.size(); i++) 
         {
-            reporte = new JTextArea();
-            reporte.setText(lista.get(i));
-            this.jPanel1.add(reporte);
+            jTextArea1.setText(jTextArea1.getText()+"Reporte #"+(i+1)+":  "+lista.get(i));
+            System.out.println(lista.get(i));
         }
     }
 }

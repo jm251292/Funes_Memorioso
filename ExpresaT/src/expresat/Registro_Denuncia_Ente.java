@@ -15,6 +15,9 @@ public class Registro_Denuncia_Ente extends javax.swing.JFrame
         conexion= new Conexion();
         initComponents();
         llenarComboBoxEntes();
+        this.jTextArea1.setText("");
+        this.jTextArea3.setText("");
+        this.jTextField1.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -40,7 +43,7 @@ public class Registro_Denuncia_Ente extends javax.swing.JFrame
         jComboBox2 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -180,6 +183,9 @@ public class Registro_Denuncia_Ente extends javax.swing.JFrame
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.jTextArea1.setText("");
+        this.jTextArea3.setText("");
+        this.jTextField1.setText("");
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 

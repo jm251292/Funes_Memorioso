@@ -1,0 +1,12 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `getLugarTrabajo` (IN ced VARCHAR(45))
+BEGIN
+	declare idper int;
+	select idpersona into idper from persona where cedula = ced;
+	select lt.nombre from lugartrabajo lt inner join personaxtrabajo pt on pt.lugartrabajo_idlugartrabajo=lt.idlugartrabajo WHERE idper=pt.persona_idpersona1; 
+END

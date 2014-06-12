@@ -1,12 +1,17 @@
 package expresat;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class Registrar_Categoria extends javax.swing.JFrame {
-
+public class Registrar_Categoria extends javax.swing.JFrame 
+{
+    Conexion conexion;
+    
     public Registrar_Categoria() {
         initComponents();
-        this.jTextField1.setText("");
+        conexion = new Conexion();
+        this.jTextField1.setText(null);
+        this.jTextArea1.setText("");
     }
 
 
@@ -18,11 +23,14 @@ public class Registrar_Categoria extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(0, 0, 450, 210));
-        setMinimumSize(new java.awt.Dimension(450, 210));
-        setPreferredSize(new java.awt.Dimension(450, 210));
+        setBounds(new java.awt.Rectangle(0, 0, 800, 345));
+        setMinimumSize(new java.awt.Dimension(800, 345));
         getContentPane().setLayout(null);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -44,7 +52,7 @@ public class Registrar_Categoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(240, 130, 73, 23);
+        jButton1.setBounds(133, 123, 90, 23);
 
         jButton2.setText("Atrás");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +61,29 @@ public class Registrar_Categoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(100, 130, 73, 23);
+        jButton2.setBounds(332, 209, 90, 23);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(192, 192, 192));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(490, 11, 300, 300);
+
+        jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(168, 209, 90, 23);
+
+        jLabel2.setText("Consultar Categotrías:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(19, 213, 122, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -64,6 +94,7 @@ public class Registrar_Categoria extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.jTextField1.setText(null);
+        this.jTextArea1.setText("");
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -85,10 +116,33 @@ public class Registrar_Categoria extends javax.swing.JFrame {
             conexion.destruir();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        llenarListaCat();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+        private void llenarListaCat() {
+         ArrayList<String> lista= new ArrayList();       // lista con los nombres para añadir al comboBox
+        conexion.preparardb();
+        lista= conexion.devolverCatPersona();
+        String temp = "";
+        
+        for (int i = 0; i < lista.size(); i++)          // ciclo que agraga uno a uno a las personas
+        {
+            temp += lista.get(i)+"\n";
+        }
+        this.jTextArea1.setText(temp);
+        conexion.destruir();
+    }
+    
 }
